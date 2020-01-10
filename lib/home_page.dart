@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Container(
+              decoration: ScreenDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +29,7 @@ class HomePage extends StatelessWidget {
                     child: Center(
                         child: Text(
                       model.mainTitle,
-                      style: TextStyle(fontSize: 36),
+                      style: TextStyle(fontSize: 36, color: Color(0xFF3EB16F)),
                     )),
                   ),
                 ],
@@ -50,6 +52,7 @@ class TopContainer extends StatelessWidget {
           bottomLeft: Radius.elliptical(50, 27),
           bottomRight: Radius.elliptical(50, 27),
         ),
+        //   border:  Border.all(color: Color(0xFFB0F3CB),),
         boxShadow: [
           BoxShadow(
             blurRadius: 5,
@@ -57,7 +60,7 @@ class TopContainer extends StatelessWidget {
             offset: Offset(0, 3.5),
           )
         ],
-        color: Color(0xFF3EB16F),
+        color: Colors.white, //Color(0xFF3EB16F),
       ),
       // width: double.infinity,
       child: Column(
@@ -72,7 +75,7 @@ class TopContainer extends StatelessWidget {
                 "Mediminder",
                 style: TextStyle(
                   fontSize: 64,
-                  color: Colors.white,
+                  color: Color(0xFF3EB16F), //Colors.white,
                 ),
               ),
             ),
@@ -87,7 +90,7 @@ class TopContainer extends StatelessWidget {
                 "Number of Mediminders",
                 style: TextStyle(
                   fontSize: 17,
-                  color: Colors.white,
+                  color: Color(0xFF3EB16F), // color: Color(0xFF3EB16F)
                 ),
               ),
             ),
@@ -98,11 +101,12 @@ class TopContainer extends StatelessWidget {
               child: Text(
                 model.numberMed,
                 style: TextStyle(
-                  fontFamily: "Neu",
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                    fontFamily: "Neu",
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF3EB16F)
+                    //  color: Colors.white,
+                    ),
               ),
             ),
           ),
