@@ -24,19 +24,39 @@ class HomePage extends StatelessWidget {
                     flex: 4,
                     child: TopContainer(),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Flexible(
                     flex: 7,
                     child: Center(
                         child: Text(
                       model.mainTitle,
-                      style: TextStyle(fontSize: 36, color: Color(0xFF3EB16F)),
+                      style: TextStyle(fontSize: 22,   color: Colors.grey[400],),
                     )),
                   ),
                 ],
               ),
-            )
+            ),
+
           ],
-        ));
+        ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 4,
+        backgroundColor: Color(0xFF3EB16F),
+        child: Icon(
+          Icons.add,
+        ),
+        onPressed: () {
+//          Navigator.push(
+//            context,
+//            MaterialPageRoute(
+//              builder: (context) => {},
+//            ),
+//          );
+        },
+      ),
+    );
   }
 }
 

@@ -5,7 +5,7 @@ class HomeModel  with ChangeNotifier {
   HomeModel();
 
   String _displayText = "";
-  String mainTitle = " Home Page";
+  String mainTitle = " Press + to add a Medimcal Reminder ";
   String numberMed = '0';
 
 

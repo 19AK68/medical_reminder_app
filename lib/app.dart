@@ -13,6 +13,8 @@ class MedicalReminderApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'MedicalReminder',
+//        theme: ThemeData.light(),
+//        darkTheme: ThemeData.dark(),
 
         home: HomePage(),
         initialRoute: '/',
