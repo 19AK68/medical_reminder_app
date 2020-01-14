@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:medical_reminder/page/new_entry_page.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:provider/provider.dart';
@@ -10,37 +11,39 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: <Widget>[
-            Container(
-              decoration: ScreenDecoration(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Flexible(
-                    flex: 4,
-                    child: TopContainer(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Flexible(
-                    flex: 7,
-                    child: Center(
-                        child: Text(
-                      model.mainTitle,
-                      style: TextStyle(fontSize: 22,   color: Colors.grey[400],),
-                    )),
-                  ),
-                ],
-              ),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: ScreenDecoration(),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Flexible(
+                  flex: 4,
+                  child: TopContainer(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Flexible(
+                  flex: 7,
+                  child: Center(
+                      child: Text(
+                    model.mainTitle,
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.grey[400],
+                    ),
+                  )),
+                ),
+              ],
             ),
-
-          ],
-        ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         elevation: 4,
         backgroundColor: Color(0xFF3EB16F),
@@ -48,12 +51,12 @@ class HomePage extends StatelessWidget {
           Icons.add,
         ),
         onPressed: () {
-//          Navigator.push(
-//            context,
-//            MaterialPageRoute(
-//              builder: (context) => {},
-//            ),
-//          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewEntryPage(),
+            ),
+          );
         },
       ),
     );
@@ -94,6 +97,8 @@ class TopContainer extends StatelessWidget {
               child: Text(
                 "Mediminder",
                 style: TextStyle(
+                  fontFamily: 'Arizonia',
+                  //'Italianno',//'Arizonia',//'PermanentMarker',
                   fontSize: 64,
                   color: Color(0xFF3EB16F), //Colors.white,
                 ),
@@ -109,7 +114,8 @@ class TopContainer extends StatelessWidget {
               child: Text(
                 "Number of Mediminders",
                 style: TextStyle(
-                  fontSize: 17,
+                  fontFamily: "Lato",
+                  fontSize: 18,
                   color: Color(0xFF3EB16F), // color: Color(0xFF3EB16F)
                 ),
               ),
@@ -121,7 +127,7 @@ class TopContainer extends StatelessWidget {
               child: Text(
                 model.numberMed,
                 style: TextStyle(
-                    fontFamily: "Neu",
+                    fontFamily: "Lato",
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF3EB16F)

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
+import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
 
-import 'home_page.dart';
+import 'page/home_page.dart';
 
 class MedicalReminderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<HomeModel>(create: (_) => HomeModel())
+        ChangeNotifierProvider<HomeModel>(create: (_) => HomeModel()),
+        ChangeNotifierProvider<NewEntryModel>(create: (_) => NewEntryModel()),
       ],
       child: MaterialApp(
         title: 'MedicalReminder',
-//        theme: ThemeData.light(),
+        theme: ThemeData(
+          primarySwatch:  Colors.green,
+          fontFamily: 'Lato',
+        ),
 //        darkTheme: ThemeData.dark(),
 
         home: HomePage(),
