@@ -10,54 +10,91 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: <Widget>[
-          Container(
-            decoration: ScreenDecoration(),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Flexible(
-                  flex: 4,
-                  child: TopContainer(),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Flexible(
-                  flex: 7,
-                  child: Center(
-                      child: Text(
-                    model.mainTitle,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.grey[400],
+    return Container(
+      child: Container(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Stack(
+            children: <Widget>[
+              Container(
+                decoration: ScreenDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 5,
+                      child: TopContainer(),
                     ),
-                  )),
+                    SizedBox(
+                      height: 10 * UI.scaleFactorH,
+                    ),
+                    Flexible(
+                      flex: 10,
+                      child: Center(
+                          child: Text(
+                        model.mainTitle,
+                        style: TextStyle(
+                          fontSize: 20 * UI.scaleFactorH,
+                          color: Colors.grey[400],
+                        ),
+                      )),
+                    ),
+                  ],
                 ),
+              ),
+            ],
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Container(
+            height: 92 * UI.scaleFactorH,
+            width: 175 * UI.scaleFactorH,
+            child: Column(
+              children: <Widget>[
+                GradientButton(
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 28 * UI.scaleFactorH,
+                    ),
+
+//                    child: Text(
+//                      "ADD",
+//                      style: TextStyle(
+//                          color: Colors.white, fontWeight: FontWeight.w800),
+//                    ),
+                    gradient:
+                        CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewEntryPage(),
+                        ),
+                      );
+                    }),
               ],
             ),
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 4,
-        backgroundColor: Color(0xFF3EB16F),
-        child: Icon(
-          Icons.add,
+
+//      FloatingActionButton(
+//        elevation: 4,
+//        backgroundColor: Color(0xFF3EB16F), //Color(0xFF3EB16F),
+//        child: Icon(
+//          Icons.add,
+//        ),
+//        onPressed: () {
+//          Navigator.push(
+//            context,
+//            MaterialPageRoute(
+//              builder: (context) => NewEntryPage(),
+//            ),
+//          );
+//        },
+//      ),
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => NewEntryPage(),
-            ),
-          );
-        },
       ),
     );
   }
@@ -71,6 +108,8 @@ class TopContainer extends StatelessWidget {
         child: //SafeArea(
             Container(
       decoration: BoxDecoration(
+        gradient: CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
+        //Color(0xFF8aedb4)
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.elliptical(50, 27),
           bottomRight: Radius.elliptical(50, 27),
@@ -83,7 +122,7 @@ class TopContainer extends StatelessWidget {
             offset: Offset(0, 3.5),
           )
         ],
-        color: Colors.white, //Color(0xFF3EB16F),
+        //  color: Colors.white, //Color(0xFF3EB16F),
       ),
       // width: double.infinity,
       child: Column(
@@ -93,14 +132,15 @@ class TopContainer extends StatelessWidget {
               vertical: 8,
             ),
             child: Container(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 20 * UI.scaleFactorH),
               child: Text(
                 "Mediminder",
                 style: TextStyle(
                   fontFamily: 'Arizonia',
                   //'Italianno',//'Arizonia',//'PermanentMarker',
-                  fontSize: 64,
-                  color: Color(0xFF3EB16F), //Colors.white,
+                  fontSize: 55 * UI.scaleFactorH,
+                  color: Colors.white,
+                  //color: Color(0xFF3EB16F), //Colors.white,
                 ),
               ),
             ),
@@ -109,30 +149,34 @@ class TopContainer extends StatelessWidget {
             color: Color(0xFFB0F3CB),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 12.0),
+            padding: EdgeInsets.only(
+                top: 8 * UI.scaleFactorH, bottom: 8 * UI.scaleFactorH),
             child: Center(
               child: Text(
                 "Number of Mediminders",
                 style: TextStyle(
                   fontFamily: "Lato",
-                  fontSize: 18,
-                  color: Color(0xFF3EB16F), // color: Color(0xFF3EB16F)
+                  fontSize: 16 * UI.scaleFactorH,
+                  color: Colors
+                      .white, //color: Color(0xFF3EB16F), // color: Color(0xFF3EB16F)
                 ),
               ),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 16.0, bottom: 5),
+            padding: EdgeInsets.only(
+                top: 8 * UI.scaleFactorH, bottom: 8 * UI.scaleFactorH),
             child: Center(
               child: Text(
                 model.numberMed,
                 style: TextStyle(
-                    fontFamily: "Lato",
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF3EB16F)
-                    //  color: Colors.white,
-                    ),
+                  fontFamily: "Lato",
+                  fontSize: 24 * UI.scaleFactorH,
+                  fontWeight: FontWeight.bold,
+                  //color: Color(0xFF3EB16F)
+                  color: Colors.white,
+                  //  color: Colors.white,
+                ),
               ),
             ),
           ),
