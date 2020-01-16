@@ -16,7 +16,7 @@ class MedicalReminderApp extends StatelessWidget {
       child: MaterialApp(
         title: 'MedicalReminder',
         theme: ThemeData(
-          primarySwatch:  Colors.green,
+          primarySwatch:  Colors.blue,
           fontFamily: 'Lato',
         ),
 //        darkTheme: ThemeData.dark(),

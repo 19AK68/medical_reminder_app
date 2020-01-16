@@ -46,54 +46,58 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: Container(
-            height: 92 * UI.scaleFactorH,
-            width: 175 * UI.scaleFactorH,
-            child: Column(
-              children: <Widget>[
-                GradientButton(
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 28 * UI.scaleFactorH,
-                    ),
 
-//                    child: Text(
-//                      "ADD",
-//                      style: TextStyle(
-//                          color: Colors.white, fontWeight: FontWeight.w800),
-//                    ),
-                    gradient:
-                        CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NewEntryPage(),
-                        ),
-                      );
-                    }),
-              ],
+          floatingActionButton:  FloatingActionButton(
+            elevation: 4,
+            backgroundColor:  Color(0xFF20536c),//Color(0xFF3EB16F), //Color(0xFF3EB16F),
+            child: Icon(
+              Icons.add,
             ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewEntryPage(),
+                ),
+              );
+            },
           ),
 
-//      FloatingActionButton(
-//        elevation: 4,
-//        backgroundColor: Color(0xFF3EB16F), //Color(0xFF3EB16F),
-//        child: Icon(
-//          Icons.add,
-//        ),
-//        onPressed: () {
-//          Navigator.push(
-//            context,
-//            MaterialPageRoute(
-//              builder: (context) => NewEntryPage(),
+
+//          Container(
+//            height: 92 * UI.scaleFactorH,
+//            width: 175 * UI.scaleFactorH,
+//            child: Column(
+//              children: <Widget>[
+//                GradientButton(
+//                    child: Icon(
+//                      Icons.add,
+//                      color: Colors.white,
+//                      size: 28 * UI.scaleFactorH,
+//                    ),
+//
+////                    child: Text(
+////                      "ADD",
+////                      style: TextStyle(
+////                          color: Colors.white, fontWeight: FontWeight.w800),
+////                    ),
+//                    gradient:
+//                        CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
+//                    onPressed: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                          builder: (context) => NewEntryPage(),
+//                        ),
+//                      );
+//                    }),
+//              ],
 //            ),
-//          );
-//        },
-//      ),
+//          ),
+
+
+
+
         ),
       ),
     );
@@ -108,7 +112,7 @@ class TopContainer extends StatelessWidget {
         child: //SafeArea(
             Container(
       decoration: BoxDecoration(
-        gradient: CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
+        //gradient: CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
         //Color(0xFF8aedb4)
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.elliptical(50, 27),
@@ -122,7 +126,7 @@ class TopContainer extends StatelessWidget {
             offset: Offset(0, 3.5),
           )
         ],
-        //  color: Colors.white, //Color(0xFF3EB16F),
+          color: Color(0xFF20536c),//Color(0xFF3EB16F),
       ),
       // width: double.infinity,
       child: Column(

@@ -98,3 +98,9 @@ flutter:
     - family: Italianno
       fonts:
         - asset: assets/fonts/Italianno-Regular.ttf
+    - family: GalleryIcons
+      fonts:
+        - asset: assets/fonts/GalleryIcons.ttf
+    - family: Ic
+      fonts:
+        - asset: assets/fonts/ic_medicine.ttf
