@@ -47,9 +47,10 @@ class HomePage extends StatelessWidget {
             ],
           ),
 
-          floatingActionButton:  FloatingActionButton(
+          floatingActionButton: FloatingActionButton(
             elevation: 4,
-            backgroundColor:  Color(0xFF20536c),//Color(0xFF3EB16F), //Color(0xFF3EB16F),
+            backgroundColor: Color(0xFF20536c),
+            //Color(0xFF3EB16F), //Color(0xFF3EB16F),
             child: Icon(
               Icons.add,
             ),
@@ -62,7 +63,6 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-
 
 //          Container(
 //            height: 92 * UI.scaleFactorH,
@@ -94,10 +94,6 @@ class HomePage extends StatelessWidget {
 //              ],
 //            ),
 //          ),
-
-
-
-
         ),
       ),
     );
@@ -126,7 +122,7 @@ class TopContainer extends StatelessWidget {
             offset: Offset(0, 3.5),
           )
         ],
-          color: Color(0xFF20536c),//Color(0xFF3EB16F),
+        color: Color(0xFF20536c), //Color(0xFF3EB16F),
       ),
       // width: double.infinity,
       child: Column(

@@ -1,43 +1,32 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
 
-
-
 class NewEntryModel with ChangeNotifier {
-
   NewEntryModel();
 
-  var isSelected = [false,true,false,false,false];
+  List<bool> _isSelected = [false, true, false, false];
 
-  bool updateSelectedMedicine(MedicineType medicineType){
+  List<bool> get isSelected => _isSelected;
 
-    bool _isSelected = false;
-    switch (medicineType) {
-      case MedicineType.Bottle:
-        _isSelected = true;
-        break;
-      case MedicineType.Pill:
-        _isSelected = true;
-        break;
-      case MedicineType.Syringe:
-        _isSelected = true;
-        break;
-      case MedicineType.Tablet:
-        _isSelected = true;
-        break;
-      case MedicineType.None:
-        _isSelected = true;
-        break;
+  // var isSelected = [false, true, false, false, false];
+
+  void updateSelectedMedicine(MedicineType medicineType) {
+    /// fount true
+    var posSelected = medicineType.index;
+    var posCurrent = isSelected.indexOf(true);
+    if (posCurrent >= 0) {
+      if (posCurrent == posSelected) {
+        isSelected[posCurrent] = !(isSelected[posCurrent]);
+      } else {
+        isSelected[posCurrent] = !(isSelected[posCurrent]);
+        isSelected[posSelected] = !(isSelected[posSelected]);
+      }
+    } else {
+      isSelected[posSelected] = true;
     }
+
     notifyListeners();
-    return _isSelected;
-
-
   }
-
-
 
   bool isMedicineType(MedicineType medicineType) {
     bool _isMedisineType = false;
