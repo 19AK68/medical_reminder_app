@@ -24,19 +24,19 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Flexible(
-                      flex: 5,
+                      flex: 6,
                       child: TopContainer(),
                     ),
                     SizedBox(
                       height: 10 * UI.scaleFactorH,
                     ),
                     Flexible(
-                      flex: 10,
+                      flex: 11,
                       child: Center(
                           child: Text(
                         model.mainTitle,
                         style: TextStyle(
-                          fontSize: 20 * UI.scaleFactorH,
+                          fontSize: 18 * UI.scaleFactorH,
                           color: Colors.grey[400],
                         ),
                       )),
