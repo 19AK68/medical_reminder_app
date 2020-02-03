@@ -4,7 +4,7 @@ import 'package:medical_reminder/util/enums/medicine_type.dart';
 class NewEntryModel with ChangeNotifier {
   NewEntryModel();
 
-  List<bool> _isSelected = [false, true, false, false];
+  List<bool> _isSelected = [false, false, false, false];
 
   List<bool> get isSelected => _isSelected;
 
@@ -49,4 +49,6 @@ class NewEntryModel with ChangeNotifier {
     }
     return _isMedisineType;
   }
+
+
 }

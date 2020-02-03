@@ -4,6 +4,7 @@ import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:medical_reminder/widget/medicine_type_widget.dart';
 import 'package:medical_reminder/widget/panel_title_widget.dart';
+import 'package:medical_reminder/widget/selected_interval.dart';
 import 'package:provider/provider.dart';
 
 class NewEntryPage extends StatelessWidget {
@@ -111,10 +112,17 @@ class NewEntryPage extends StatelessWidget {
                 ],
               ),
             ),
-            PanelTitle(
-              title: "Interval Selection",
-              isRequired: true,
+            Row(
+              children: <Widget>[
+                PanelTitle(
+                  title: "Interval Selection",
+                  isRequired: true,
+
+                ),
+                SelectedInterval(),
+              ],
             ),
+
           ],
         ),
       ),
