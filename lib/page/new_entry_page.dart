@@ -4,6 +4,7 @@ import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:medical_reminder/widget/medicine_type_widget.dart';
 import 'package:medical_reminder/widget/panel_title_widget.dart';
+import 'package:medical_reminder/widget/select_time_widget.dart';
 import 'package:medical_reminder/widget/selected_interval.dart';
 import 'package:provider/provider.dart';
 
@@ -69,60 +70,107 @@ class NewEntryPage extends StatelessWidget {
               height: UI.marginStandard,
             ),
             PanelTitle(
-              title: "Medicine Type",
-              isRequired: false,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0 * UI.scaleFactorH),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  MedicineTypeColumn(
-                      type: MedicineType.Bottle,
-                      name: "Bottle",
-                      iconValue: 0xe900,
-                      isSelected: model.isSelected[MedicineType.Bottle
-                              .index] //model.isSelected[0]//model.updateSelectedMedicine(MedicineType.Bottle)
-                          ? true
-                          : false),
-                  MedicineTypeColumn(
-                      type: MedicineType.Pill,
-                      name: "Pill",
-                      iconValue: 0xe901,
-                      isSelected: model.isSelected[MedicineType.Pill
-                              .index] //model.updateSelectedMedicine(MedicineType.Pill)
-                          ? true
-                          : false),
-                  MedicineTypeColumn(
-                      type: MedicineType.Syringe,
-                      name: "Syringe",
-                      iconValue: 0xe902,
-                      isSelected: model.isSelected[MedicineType.Syringe
-                              .index] //model.updateSelectedMedicine(MedicineType.Syringe)
-                          ? true
-                          : false),
-                  MedicineTypeColumn(
-                      type: MedicineType.Tablet,
-                      name: "Tablet",
-                      iconValue: 0xe903,
-                      isSelected: model.isSelected[MedicineType.Tablet
-                              .index] //model.updateSelectedMedicine(MedicineType.Tablet)
-                          ? true
-                          : false),
-                ],
+                title: "Medicine Type",
+                isRequired: false,
+                spanColor: Color(0xFF20536c)),
+            Container(
+              height: 150,
+              width: 150,
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.0 * UI.scaleFactorH),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                   // Row(
+                    //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //  children: <Widget>[
+                        MedicineTypeColumn(
+                            type: MedicineType.Bottle,
+                            name: "Bottle",
+                            iconValue: 0xe900,
+                            isSelected: model.isSelected[MedicineType.Bottle
+                                    .index] //model.isSelected[0]//model.updateSelectedMedicine(MedicineType.Bottle)
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Pill,
+                            name: "Pill",
+                            iconValue: 0xe901,
+                            isSelected: model.isSelected[MedicineType.Pill
+                                    .index] //model.updateSelectedMedicine(MedicineType.Pill)
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Syringe,
+                            name: "Syringe",
+                            iconValue: 0xe902,
+                            isSelected: model.isSelected[MedicineType.Syringe
+                                    .index] //model.updateSelectedMedicine(MedicineType.Syringe)
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Tablet,
+                            name: "Tablet",
+                            iconValue: 0xe903,
+                            isSelected: model.isSelected[MedicineType.Tablet
+                                    .index] //model.updateSelectedMedicine(MedicineType.Tablet)
+                                ? true
+                                : false),
+                    //  ],
+                    //),
+                  ],
+                ),
               ),
             ),
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                PanelTitle(
-                  title: "Interval Selection",
-                  isRequired: true,
-
+                Row(
+                  children: <Widget>[
+                    PanelTitle(
+                        title: "Interval Selection",
+                        isRequired: true,
+                        spanColor: Color(0xFF20536c)),
+                    Container(
+                        padding: EdgeInsets.only(
+                            left: UI.marginStandard,
+                            top: UI.marginStandard / 2),
+                        child: SelectedInterval()),
+                  ],
                 ),
-                SelectedInterval(),
+                Row(
+                  children: <Widget>[
+                    PanelTitle(
+                        title: "Starting Time",
+                        isRequired: true,
+                        spanColor: Color(0xFF20536c)),
+                  ],
+                ),
+                SelectTime(),
               ],
             ),
-
+            Container(
+              margin: EdgeInsets.symmetric(
+                  vertical: UI.marginStandardDouble * 2,
+                  horizontal: UI.marginStandardDouble * 2),
+              child: FlatButton(
+                onPressed: () {},
+                color: Color(0xFF20536c),
+                shape: StadiumBorder(),
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: UI.marginStandard / 2),
+                  child: Text(
+                    "Confirm",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

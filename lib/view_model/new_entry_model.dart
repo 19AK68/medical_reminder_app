@@ -50,5 +50,14 @@ class NewEntryModel with ChangeNotifier {
     return _isMedisineType;
   }
 
+  Future<TimeOfDay> selectTime(BuildContext context) async {
+    TimeOfDay _time = TimeOfDay(hour: 0, minute: 00);
+    bool _clicked = false;
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: _time,
 
+    );
+    return picked;
+  }
 }

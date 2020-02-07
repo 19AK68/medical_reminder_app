@@ -4,8 +4,9 @@ import 'dart:math';
 
 
 class CustomGradient extends LinearGradient {
-  static Color colorGreenStart = Color(0xFFA9BB46);
-  static Color colorGreenEnd = Color(0xFF5FBB46);
+  static Color colorGreenStart = Color(0xFF20496c);//0xFF20496c
+  //static Color colorGreenEnd = Color(0xFF5788A0);
+  static Color colorGreenEnd = Color(0xFF20536c);
 
   CustomGradient([Color colorStart, Color colorEnd])
       : super(

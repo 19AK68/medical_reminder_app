@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/util/colors.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'page/home_page.dart';
 
 class MedicalReminderApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -16,7 +18,7 @@ class MedicalReminderApp extends StatelessWidget {
       child: MaterialApp(
         title: 'MedicalReminder',
         theme: ThemeData(
-          primarySwatch:  Colors.blue,
+          primarySwatch: themeColor,
           fontFamily: 'Lato',
         ),
 //        darkTheme: ThemeData.dark(),

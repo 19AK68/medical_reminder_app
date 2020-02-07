@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
+
 class MedicineTypeColumn extends StatelessWidget {
   final MedicineType type;
   final String name;
   final int iconValue;
   final bool isSelected;
 
-
   MedicineTypeColumn(
       {Key key,
-        @required this.type,
-        @required this.name,
-        @required this.iconValue,
-        @required this.isSelected})
+      @required this.type,
+      @required this.name,
+      @required this.iconValue,
+      @required this.isSelected})
       : super(key: key);
 
   @override
@@ -22,13 +22,12 @@ class MedicineTypeColumn extends StatelessWidget {
     final NewEntryModel _newEntryModel = Provider.of<NewEntryModel>(context);
     return GestureDetector(
       onTap: () {
-
-       _newEntryModel.updateSelectedMedicine(type);
+        _newEntryModel.updateSelectedMedicine(type);
       },
       child: Column(
         children: <Widget>[
           Container(
-            width: 75,
+            width: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: isSelected ? Color(0xFF20536c) : Colors.white,
