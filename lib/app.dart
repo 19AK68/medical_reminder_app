@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/page/login_page.dart';
 import 'package:medical_reminder/util/colors.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
+import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +14,7 @@ class MedicalReminderApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<LoginModel>(create: (_) => LoginModel()),
         ChangeNotifierProvider<HomeModel>(create: (_) => HomeModel()),
         ChangeNotifierProvider<NewEntryModel>(create: (_) => NewEntryModel()),
       ],
@@ -23,7 +26,7 @@ class MedicalReminderApp extends StatelessWidget {
         ),
 //        darkTheme: ThemeData.dark(),
 
-        home: HomePage(),
+        home: LoginPage(),
         initialRoute: '/',
         onUnknownRoute: (settings) => MaterialPageRoute(
           builder: (_) => Scaffold(

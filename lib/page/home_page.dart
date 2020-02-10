@@ -111,8 +111,8 @@ class TopContainer extends StatelessWidget {
         //gradient: CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
         //Color(0xFF8aedb4)
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.elliptical(50, 27),
-          bottomRight: Radius.elliptical(50, 27),
+          bottomLeft: Radius.elliptical(50,50),
+          bottomRight: Radius.elliptical(50, 50),
         ),
         //   border:  Border.all(color: Color(0xFFB0F3CB),),
         boxShadow: [
