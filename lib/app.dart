@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical_reminder/page/login_page.dart';
+import 'package:medical_reminder/page/auth_login_page.dart';
 import 'package:medical_reminder/util/colors.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
@@ -26,7 +26,7 @@ class MedicalReminderApp extends StatelessWidget {
         ),
 //        darkTheme: ThemeData.dark(),
 
-        home: LoginPage(),
+        home: AuthPage(),
         initialRoute: '/',
         onUnknownRoute: (settings) => MaterialPageRoute(
           builder: (_) => Scaffold(

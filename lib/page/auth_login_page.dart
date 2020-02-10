@@ -7,11 +7,11 @@ import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/widget/field_input_widget.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class AuthPage extends StatelessWidget {
   final GlobalKey _scaffoldKey = GlobalKey();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
+  static TextEditingController _emailController = TextEditingController();
+  static TextEditingController _passwordController = TextEditingController();
+  static TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
