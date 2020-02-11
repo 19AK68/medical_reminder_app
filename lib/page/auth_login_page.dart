@@ -9,9 +9,7 @@ import 'package:provider/provider.dart';
 
 class AuthPage extends StatelessWidget {
   final GlobalKey _scaffoldKey = GlobalKey();
-  static TextEditingController _emailController = TextEditingController();
-  static TextEditingController _passwordController = TextEditingController();
-  static TextEditingController _nameController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +18,10 @@ class AuthPage extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       key: _scaffoldKey,
       body: Container(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-
             Container(
               padding: EdgeInsets.only(top: UI.marginStandardDouble),
               child: Center(
@@ -44,13 +40,15 @@ class AuthPage extends StatelessWidget {
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             //children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(horizontal: UI.marginStandardDouble,vertical: UI.marginStandard),
+              padding: EdgeInsets.symmetric(
+                  horizontal: UI.marginStandardDouble,
+                  vertical: UI.marginStandard),
               child: RaisedButton(
                 child: Container(
                     padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Colors.white,fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     )),
                 highlightElevation: 0.0,
                 splashColor: Colors.white,
@@ -74,29 +72,35 @@ class AuthPage extends StatelessWidget {
             /// register
             Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: UI.marginStandardDouble, vertical: UI.marginStandardDouble),
+                  horizontal: UI.marginStandardDouble,
+                  vertical: UI.marginStandardDouble),
               child: RaisedButton(
-                child: Container(
-                    padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
-                    child: Text(
-                      "Register",
-                      style: TextStyle(color: Color(0xFF20536c),fontSize: 16),
-                    )),
-                highlightElevation: 0.0,
-                splashColor: Color(0xFF20536c),
-                highlightColor: Colors.white,
-                elevation: 0.0,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                      color: Color(0xFF20536c),
-                      style: BorderStyle.solid,
-                      width: 1),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                onPressed: () => showPress(context, _emailController,
-                    _passwordController), //loginSheet(context),
-              ),
+                  child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: UI.marginStandard),
+                      child: Text(
+                        "Register",
+                        style:
+                            TextStyle(color: Color(0xFF20536c), fontSize: 16),
+                      )),
+                  highlightElevation: 0.0,
+                  splashColor: Color(0xFF20536c),
+                  highlightColor: Colors.white,
+                  elevation: 0.0,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Color(0xFF20536c),
+                        style: BorderStyle.solid,
+                        width: 1),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(_createRegisterRoute());
+                  }
+//                    => showPress(context, _emailController,
+//                    _passwordController), //loginSheet(context),
+                  ),
             ),
             Expanded(
               child: Align(
@@ -119,12 +123,9 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-
-
   Widget logo([BuildContext context]) {
     return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08
-      ),
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 220,
@@ -132,16 +133,16 @@ class AuthPage extends StatelessWidget {
           children: <Widget>[
             Positioned(
                 child: Container(
-                  child: Align(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Color(0xFF20536c)),
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  height: 154,
-                )),
+              child: Align(
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Color(0xFF20536c)),
+                  width: 150,
+                  height: 150,
+                ),
+              ),
+              height: 154,
+            )),
             Positioned(
               child: Container(
                   height: 154,
@@ -163,7 +164,7 @@ class AuthPage extends StatelessWidget {
               right: MediaQuery.of(context).size.width * 0.22,
               child: Container(
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle, color:Color(0xFF20536c)),
+                    shape: BoxShape.circle, color: Color(0xFF20536c)),
               ),
             ),
             Positioned(
@@ -173,14 +174,199 @@ class AuthPage extends StatelessWidget {
               right: MediaQuery.of(context).size.width * 0.32,
               child: Container(
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,color: Color(0xFF20536c)),
+                    shape: BoxShape.circle, color: Color(0xFF20536c)),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+}
 
+Route _createRegisterRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => RegisterPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+class RegisterPage extends StatelessWidget {
+
+  static TextEditingController _emailController = TextEditingController();
+  static TextEditingController _passwordController = TextEditingController();
+  static TextEditingController _nameController = TextEditingController();
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        body:Container(
+
+//          decoration: BoxDecoration(
+//            color: Colors.white,
+         // )
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.0),
+                topRight: Radius.circular(40.0)),
+            child: Container(
+
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          left: 10,
+                          top: 10,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+//                                  _emailController.clear();
+//                                  _passwordController.clear();
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              size: 30.0,
+                              color: Color(0xFF20536c),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    height: 50,
+                    width: 50,
+                  ),
+                  Container(
+                    color:Colors.red,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 140,
+                            child: Stack(
+                              children: <Widget>[
+                                Positioned(
+                                  child: Align(
+                                    child: Container(
+                                      width: 250,
+                                      height: 250,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context).primaryColor),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                                Positioned(
+                                  child: Container(
+                                    child: Text(
+                                      "REGISTER",
+                                      style: TextStyle(
+                                        fontSize:32,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                            padding: EdgeInsets.only(bottom: 20, top: 60),
+                            child: InputField(
+                              icon: Icon(Icons.email),
+                              hint: "Email",
+                              controller: _emailController,
+                              obsecure: false,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: InputField(
+                                icon: Icon(Icons.lock),
+                                hint: "Password",
+                                controller: _passwordController,
+                                obsecure: true),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                                bottom: MediaQuery.of(context).viewInsets.bottom),
+                            child: Container(
+                              child: RaisedButton(
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: UI.marginStandard),
+                                    child: Text(
+                                      "Login",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                highlightElevation: 0.0,
+                                splashColor: Colors.white,
+                                highlightColor: Color(0xFF20536c),
+                                elevation: 0.0,
+                                color: Color(0xFF20536c),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: Colors.white,
+                                      style: BorderStyle.solid,
+                                      width: 1),
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
+                                  ),
+                                ),
+                              ),
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              height: MediaQuery.of(context).size.height / 1.1,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.white,
+            ),
+          ),
+        )
+    );
+
+    /*Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text('Page 2'),
+      ),
+    );*/
   }
 }
 
