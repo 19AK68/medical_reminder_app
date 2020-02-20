@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
     return Container(
+
       child: Container(
         child: Scaffold(
           resizeToAvoidBottomInset: false,

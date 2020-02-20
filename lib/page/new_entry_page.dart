@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
+import 'package:medical_reminder/widget/interval_selection_dropdown_widget.dart';
 import 'package:medical_reminder/widget/medicine_type_widget.dart';
 import 'package:medical_reminder/widget/panel_title_widget.dart';
 import 'package:medical_reminder/widget/select_time_widget.dart';
-import 'package:medical_reminder/widget/selected_interval.dart';
 import 'package:provider/provider.dart';
 
 class NewEntryPage extends StatelessWidget {
@@ -34,9 +34,10 @@ class NewEntryPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Container(
+
         //decoration: ScreenDecoration(),
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: UI.marginStandard),
+          padding: EdgeInsets.symmetric(horizontal: UI.marginStandardDouble),
           children: <Widget>[
             PanelTitle(
                 title: "Medicine Name",
@@ -74,81 +75,77 @@ class NewEntryPage extends StatelessWidget {
                 isRequired: false,
                 spanColor: Color(0xFF20536c)),
             Container(
-              height: 150,
-              width: 150,
+              height: 150*UI.scaleFactorH,
+              width: 150*UI.scaleFactorW,
+
               child: Padding(
                 padding: EdgeInsets.only(top: 10.0 * UI.scaleFactorH),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                   // Row(
+                    // Row(
                     //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     //  children: <Widget>[
-                        MedicineTypeColumn(
-                            type: MedicineType.Bottle,
-                            name: "Bottle",
-                            iconValue: 0xe900,
-                            isSelected: model.isSelected[MedicineType.Bottle
-                                    .index] //model.isSelected[0]//model.updateSelectedMedicine(MedicineType.Bottle)
-                                ? true
-                                : false),
-                        MedicineTypeColumn(
-                            type: MedicineType.Pill,
-                            name: "Pill",
-                            iconValue: 0xe901,
-                            isSelected: model.isSelected[MedicineType.Pill
-                                    .index] //model.updateSelectedMedicine(MedicineType.Pill)
-                                ? true
-                                : false),
-                        MedicineTypeColumn(
-                            type: MedicineType.Syringe,
-                            name: "Syringe",
-                            iconValue: 0xe902,
-                            isSelected: model.isSelected[MedicineType.Syringe
-                                    .index] //model.updateSelectedMedicine(MedicineType.Syringe)
-                                ? true
-                                : false),
-                        MedicineTypeColumn(
-                            type: MedicineType.Tablet,
-                            name: "Tablet",
-                            iconValue: 0xe903,
-                            isSelected: model.isSelected[MedicineType.Tablet
-                                    .index] //model.updateSelectedMedicine(MedicineType.Tablet)
-                                ? true
-                                : false),
+                    MedicineTypeColumn(
+                        type: MedicineType.Bottle,
+                        name: "Bottle",
+                        iconValue: 0xe900,
+                        isSelected: model.isSelected[MedicineType.Bottle
+                                .index] //model.isSelected[0]//model.updateSelectedMedicine(MedicineType.Bottle)
+                            ? true
+                            : false),
+                    MedicineTypeColumn(
+                        type: MedicineType.Pill,
+                        name: "Pill",
+                        iconValue: 0xe901,
+                        isSelected: model.isSelected[MedicineType.Pill
+                                .index] //model.updateSelectedMedicine(MedicineType.Pill)
+                            ? true
+                            : false),
+                    MedicineTypeColumn(
+                        type: MedicineType.Syringe,
+                        name: "Syringe",
+                        iconValue: 0xe902,
+                        isSelected: model.isSelected[MedicineType.Syringe
+                                .index] //model.updateSelectedMedicine(MedicineType.Syringe)
+                            ? true
+                            : false),
+                    MedicineTypeColumn(
+                        type: MedicineType.Tablet,
+                        name: "Tablet",
+                        iconValue: 0xe903,
+                        isSelected: model.isSelected[MedicineType.Tablet
+                                .index] //model.updateSelectedMedicine(MedicineType.Tablet)
+                            ? true
+                            : false),
                     //  ],
                     //),
                   ],
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+
+            PanelTitle(
+                title: "Interval Selection",
+                isRequired: true,
+                spanColor: Color(0xFF20536c)),
+            Container(
+                padding: EdgeInsets.only(
+                    left: UI.marginStandard, top: UI.marginStandard / 2),
+                child: IntervalSelectionDropDown()), //SelectedInterval()),
+
+            Row(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    PanelTitle(
-                        title: "Interval Selection",
-                        isRequired: true,
-                        spanColor: Color(0xFF20536c)),
-                    Container(
-                        padding: EdgeInsets.only(
-                            left: UI.marginStandard,
-                            top: UI.marginStandard / 2),
-                        child: SelectedInterval()),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    PanelTitle(
-                        title: "Starting Time",
-                        isRequired: true,
-                        spanColor: Color(0xFF20536c)),
-                  ],
-                ),
-                SelectTime(),
+                PanelTitle(
+                    title: "Starting Time",
+                    isRequired: true,
+                    spanColor: Color(0xFF20536c)),
               ],
             ),
+            Container(
+                padding: EdgeInsets.only(top: UI.marginStandard),
+                child: SelectTime()),
+
             Container(
               margin: EdgeInsets.symmetric(
                   vertical: UI.marginStandardDouble * 2,
@@ -158,15 +155,15 @@ class NewEntryPage extends StatelessWidget {
                 color: Color(0xFF20536c),
                 shape: StadiumBorder(),
                 child: Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: UI.marginStandard / 2),
+                  padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                   child: Text(
                     "Confirm",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: 26 ,
                       fontWeight: FontWeight.w700,
                     ),
+                    textScaleFactor: UI.scaleFactorW,
                   ),
                 ),
               ),

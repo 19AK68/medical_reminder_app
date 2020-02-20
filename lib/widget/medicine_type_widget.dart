@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
+import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
 
@@ -25,9 +26,12 @@ class MedicineTypeColumn extends StatelessWidget {
         _newEntryModel.updateSelectedMedicine(type);
       },
       child: Column(
+
         children: <Widget>[
           Container(
-            width: 100,
+
+            width: 88* UI.scaleFactorW,
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: isSelected ? Color(0xFF20536c) : Colors.white,
@@ -37,7 +41,7 @@ class MedicineTypeColumn extends StatelessWidget {
                 padding: EdgeInsets.only(top: 14.0),
                 child: Icon(
                   IconData(iconValue, fontFamily: "Ic"), //"GalleryIcons"
-                  size: 65,
+                  size: 65*UI.scaleFactorH,
                   color: isSelected ? Colors.white : Color(0xFF20536c),
                 ),
               ),
