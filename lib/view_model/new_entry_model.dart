@@ -10,6 +10,13 @@ class NewEntryModel with ChangeNotifier {
 
   // var isSelected = [false, true, false, false, false];
 
+  var interval = [6,
+    8,
+    12,
+    24,];
+
+  var selectedInterval = 0;
+
   void updateSelectedMedicine(MedicineType medicineType) {
     /// fount true
     var posSelected = medicineType.index;

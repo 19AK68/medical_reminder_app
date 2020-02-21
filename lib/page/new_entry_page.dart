@@ -131,7 +131,7 @@ class NewEntryPage extends StatelessWidget {
                 spanColor: Color(0xFF20536c)),
             Container(
                 padding: EdgeInsets.only(
-                    left: UI.marginStandard, top: UI.marginStandard / 2),
+                    left: UI.marginStandard,  ),
                 child: IntervalSelectionDropDown()), //SelectedInterval()),
 
             Row(
@@ -150,16 +150,16 @@ class NewEntryPage extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                   vertical: UI.marginStandardDouble * 2,
                   horizontal: UI.marginStandardDouble * 2),
-              child: FlatButton(
+              child:  OutlineButton(
                 onPressed: () {},
-                color: Color(0xFF20536c),
+                borderSide: BorderSide(color:Color(0xFF20536c),style: BorderStyle.solid, width: 2.0),
                 shape: StadiumBorder(),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                   child: Text(
                     "Confirm",
                     style: TextStyle(
-                      color: Colors.white,
+                      color:  Color(0xFF20536c) ,
                       fontSize: 26 ,
                       fontWeight: FontWeight.w700,
                     ),
