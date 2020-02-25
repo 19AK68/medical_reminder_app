@@ -65,6 +65,7 @@ class NewEntryModel with ChangeNotifier {
       initialTime: _time,
 
     );
+    print(' TimeOfDay picked $picked'  );
     return picked;
   }
 }
