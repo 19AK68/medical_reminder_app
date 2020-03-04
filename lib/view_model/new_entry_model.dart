@@ -68,4 +68,8 @@ class NewEntryModel with ChangeNotifier {
     print(' TimeOfDay picked $picked'  );
     return picked;
   }
+
+  addItem(){
+    
+  }
 }
