@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/page/model/medical_item.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
 
 class NewEntryModel with ChangeNotifier {
   NewEntryModel();
+
+  List<MedicalItem> medicalItem;
+
+  Future<List<MedicalItem>> getNotifications() {
+    return medicalItem ??
+        () {
+          if (medicalItem.isEmpty) {
+            _addDummyMedicalItem();
+          }
+        };
+  }
 
   List<bool> _isSelected = [false, false, false, false];
 
@@ -10,10 +22,12 @@ class NewEntryModel with ChangeNotifier {
 
   // var isSelected = [false, true, false, false, false];
 
-  var interval = [6,
+  var interval = [
+    6,
     8,
     12,
-    24,];
+    24,
+  ];
 
   var selectedInterval = 0;
 
@@ -63,13 +77,12 @@ class NewEntryModel with ChangeNotifier {
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: _time,
-
     );
-    print(' TimeOfDay picked $picked'  );
+    print(' TimeOfDay picked $picked');
     return picked;
   }
 
-  addItem(){
-    
+  void _addDummyMedicalItem() {
+  //  medicalItem.add(value)
   }
 }
