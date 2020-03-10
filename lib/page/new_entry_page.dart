@@ -34,7 +34,6 @@ class NewEntryPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Container(
-
         //decoration: ScreenDecoration(),
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: UI.marginStandardDouble),
@@ -75,9 +74,8 @@ class NewEntryPage extends StatelessWidget {
                 isRequired: false,
                 spanColor: Color(0xFF20536c)),
             Container(
-              height: 150*UI.scaleFactorH,
-              width: 150*UI.scaleFactorW,
-
+              height: 150 * UI.scaleFactorH,
+              width: 150 * UI.scaleFactorW,
               child: Padding(
                 padding: EdgeInsets.only(top: 10.0 * UI.scaleFactorH),
                 child: ListView(
@@ -131,36 +129,43 @@ class NewEntryPage extends StatelessWidget {
                 spanColor: Color(0xFF20536c)),
             Container(
                 padding: EdgeInsets.only(
-                    left: UI.marginStandard,  ),
+                  left: UI.marginStandard,
+                ),
                 child: IntervalSelectionDropDown()), //SelectedInterval()),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 PanelTitle(
                     title: "Starting Time",
                     isRequired: true,
                     spanColor: Color(0xFF20536c)),
+                Container(
+                    padding: EdgeInsets.only(top: UI.marginStandard),
+                    child: SelectTime()),
               ],
             ),
-            Container(
-                padding: EdgeInsets.only(top: UI.marginStandard),
-                child: SelectTime()),
 
             Container(
               margin: EdgeInsets.symmetric(
-                  vertical: UI.marginStandardDouble * 2,
-                  horizontal: UI.marginStandardDouble * 2),
-              child:  OutlineButton(
-                onPressed: () {},
-                borderSide: BorderSide(color:Color(0xFF20536c),style: BorderStyle.solid, width: 2.0),
+                vertical: UI.marginStandardDouble * 2,
+              ),
+              // horizontal: UI.marginStandardDouble * 2),
+              child: FlatButton(
+                color: Color(0xFF20536c),
+
+                onPressed: () {
+                  model.getMedicalItem();
+                },
+                // borderSide: BorderSide(color:Color(0xFF20536c),style: BorderStyle.solid, width: 2.0),
                 shape: StadiumBorder(),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                   child: Text(
                     "Confirm",
                     style: TextStyle(
-                      color:  Color(0xFF20536c) ,
-                      fontSize: 26 ,
+                      color: Colors.white,
+                      fontSize: 26,
                       fontWeight: FontWeight.w700,
                     ),
                     textScaleFactor: UI.scaleFactorW,

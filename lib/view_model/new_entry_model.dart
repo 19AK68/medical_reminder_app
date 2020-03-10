@@ -7,9 +7,11 @@ class NewEntryModel with ChangeNotifier {
 
   List<MedicalItem> medicalItem;
 
-  Future<List<MedicalItem>> getNotifications() {
+  Future<List<MedicalItem>> getMedicalItem() {
     return medicalItem ??
         () {
+          _addDummyMedicalItem();
+
           if (medicalItem.isEmpty) {
             _addDummyMedicalItem();
           }
@@ -34,7 +36,9 @@ class NewEntryModel with ChangeNotifier {
   void updateSelectedMedicine(MedicineType medicineType) {
     /// fount true
     var posSelected = medicineType.index;
+
     var posCurrent = isSelected.indexOf(true);
+
     if (posCurrent >= 0) {
       if (posCurrent == posSelected) {
         isSelected[posCurrent] = !(isSelected[posCurrent]);
@@ -47,6 +51,8 @@ class NewEntryModel with ChangeNotifier {
     }
 
     notifyListeners();
+    print("posSelected " + posSelected.toString());
+    print("posCurrent " + posCurrent.toString());
   }
 
   bool isMedicineType(MedicineType medicineType) {
@@ -82,7 +88,5 @@ class NewEntryModel with ChangeNotifier {
     return picked;
   }
 
-  void _addDummyMedicalItem() {
-  //  medicalItem.add(value)
-  }
+  void _addDummyMedicalItem() {}
 }
