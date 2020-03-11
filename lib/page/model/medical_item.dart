@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'package:json_annotation/json_annotation.dart';
+@JsonSerializable()
 class MedicalItem {
   String name;
   String dosage;

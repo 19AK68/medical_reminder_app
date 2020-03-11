@@ -35,7 +35,7 @@ class IntervalSelectionDropDown extends StatelessWidget {
               elevation: 4,
               value:
                   model.selectedInterval == 0 ? null : model.selectedInterval,
-              items: model.interval.map((int value) {
+              items: model.intervalItem.map((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: Text(
@@ -48,7 +48,11 @@ class IntervalSelectionDropDown extends StatelessWidget {
                   ),
                 );
               }).toList(),
-              onChanged: (newVal) {},
+              onChanged: (newVal) {
+                model.selectedInterval = newVal;
+                print(" newVal " + newVal.toString());
+                model.timeInterval = model.selectedInterval.toString();
+              },
             ),
             Text(
               model.selectedInterval == 1 ? " hour" : " hours",

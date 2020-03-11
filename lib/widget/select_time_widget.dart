@@ -15,7 +15,7 @@ class SelectTime extends StatelessWidget {
         ),
         child: FlatButton(
           onPressed: () {
-            model.selectTime(context);
+             model.selectTime(context);
           },
           color: Color(0xFF20536c),
           shape: StadiumBorder(),

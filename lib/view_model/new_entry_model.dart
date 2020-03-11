@@ -4,18 +4,24 @@ import 'package:medical_reminder/util/enums/medicine_type.dart';
 
 class NewEntryModel with ChangeNotifier {
   NewEntryModel();
+  MedicalItem medicalItem = MedicalItem();
+  List<MedicalItem> _medicalItemList = [];
+  TimeOfDay picked;
+  String timeInterval;
+  var intervalItem = [
+    6,
+    8,
+    12,
+    24,
+  ];
 
-  List<MedicalItem> medicalItem;
 
-  Future<List<MedicalItem>> getMedicalItem() {
-    return medicalItem ??
-        () {
-          _addDummyMedicalItem();
+  List<MedicalItem> getMedicalItem() {
+    if(_medicalItemList == null) {
+      _addDummyMedicalItem();
+    }
 
-          if (medicalItem.isEmpty) {
-            _addDummyMedicalItem();
-          }
-        };
+    return _medicalItemList;
   }
 
   List<bool> _isSelected = [false, false, false, false];
@@ -24,14 +30,11 @@ class NewEntryModel with ChangeNotifier {
 
   // var isSelected = [false, true, false, false, false];
 
-  var interval = [
-    6,
-    8,
-    12,
-    24,
-  ];
+
 
   var selectedInterval = 0;
+
+
 
   void updateSelectedMedicine(MedicineType medicineType) {
     /// fount true
@@ -80,7 +83,7 @@ class NewEntryModel with ChangeNotifier {
   Future<TimeOfDay> selectTime(BuildContext context) async {
     TimeOfDay _time = TimeOfDay(hour: 0, minute: 00);
     bool _clicked = false;
-    final TimeOfDay picked = await showTimePicker(
+     picked = await showTimePicker(
       context: context,
       initialTime: _time,
     );
@@ -88,5 +91,29 @@ class NewEntryModel with ChangeNotifier {
     return picked;
   }
 
-  void _addDummyMedicalItem() {}
+  void _addDummyMedicalItem() {
+    print("interval " + selectedInterval.toString());
+    print("start " +   picked.toString());
+    print("timeInterval " + timeInterval.toString());
+
+
+  medicalItem.interval = timeInterval?? " ";
+  medicalItem.startTime = picked.toString();
+
+  print("medicalItem "  + medicalItem.toString() );
+
+
+// _medicalItem.add(MedicalItem.fromMap({
+//   "name": "New",
+//   "dosage": "5",
+//   "type": "tab",
+//   "interval":selectedInterval.toString(),
+//   "start":  picked.toString(),
+// }));
+
+
+
+
+
+  }
 }
