@@ -49,9 +49,11 @@ class IntervalSelectionDropDown extends StatelessWidget {
                 );
               }).toList(),
               onChanged: (newVal) {
-                model.selectedInterval = newVal;
-                print(" newVal " + newVal.toString());
-                model.timeInterval = model.selectedInterval.toString();
+                model.changeInterval(newVal);
+                // model.selectedInterval = newVal;
+                // print(" newVal " + newVal.toString());
+                // model.timeInterval = model.selectedInterval.toString(); 
+              
               },
             ),
             Text(

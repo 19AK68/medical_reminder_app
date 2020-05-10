@@ -116,4 +116,11 @@ class NewEntryModel with ChangeNotifier {
 
 
   }
+  void changeInterval(int newVal){
+    selectedInterval = newVal;
+    print(" newVal " + newVal.toString());
+    timeInterval = selectedInterval.toString();
+    notifyListeners();
+    
+  }
 }
