@@ -34,6 +34,9 @@ class NewEntryModel with ChangeNotifier {
 
   var selectedInterval = 0;
 
+  String nameMedicine = "";
+  var starTime;
+
 
 
   void updateSelectedMedicine(MedicineType medicineType) {
@@ -88,13 +91,16 @@ class NewEntryModel with ChangeNotifier {
       initialTime: _time,
     );
     print(' TimeOfDay picked $picked');
+    starTime = picked;
     return picked;
   }
-
+   
   void _addDummyMedicalItem() {
+
     print("interval " + selectedInterval.toString());
     print("start " +   picked.toString());
     print("timeInterval " + timeInterval.toString());
+    print("nameMedicine" + nameMedicine);
 
 
   medicalItem.interval = timeInterval?? " ";
@@ -116,6 +122,15 @@ class NewEntryModel with ChangeNotifier {
 
 
   }
+// todo funcion press 
+  onPress(String name, String dosage, String timeInterval,String _startTime){
+       print("nameMedicine" + name);
+    print("dosage" + dosage.toString());
+    print("start " +   _startTime);
+    print("timeInterval " + timeInterval);
+    
+
+  }
   void changeInterval(int newVal){
     selectedInterval = newVal;
     print(" newVal " + newVal.toString());
@@ -123,4 +138,5 @@ class NewEntryModel with ChangeNotifier {
     notifyListeners();
     
   }
+ 
 }

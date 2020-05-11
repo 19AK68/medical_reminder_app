@@ -135,7 +135,7 @@ class TopContainer extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(top: 20 * UI.scaleFactorH),
               child: Text(
-                "Mediminder",
+                "Med reminder",
                 style: TextStyle(
                   fontFamily: 'Arizonia',
                   //'Italianno',//'Arizonia',//'PermanentMarker',

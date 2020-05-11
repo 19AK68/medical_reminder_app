@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
@@ -49,6 +50,7 @@ class NewEntryPage extends StatelessWidget {
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
               ),
+             
             ),
             PanelTitle(
               title: "Dosage in mg",
@@ -58,6 +60,10 @@ class NewEntryPage extends StatelessWidget {
             TextFormField(
               controller: dosageController,
               keyboardType: TextInputType.number,
+               inputFormatters: <TextInputFormatter>[
+                  WhitelistingTextInputFormatter.digitsOnly
+  
+], // Only numbers can be entered
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -155,7 +161,11 @@ class NewEntryPage extends StatelessWidget {
                 color: Color(0xFF20536c),
 
                 onPressed: () {
-                  model.getMedicalItem();
+                  String name = nameController.text;
+                  String dosage =  dosageController.text.toString();
+                               
+
+                  model.onPress(name, dosage, model.timeInterval,UI.formatTimeOfDay(model.starTime)); //getMedicalItem();
                 },
                 // borderSide: BorderSide(color:Color(0xFF20536c),style: BorderStyle.solid, width: 2.0),
                 shape: StadiumBorder(),
