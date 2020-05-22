@@ -11,14 +11,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
     return Container(
-
       child: Container(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: <Widget>[
               Container(
-                decoration: ScreenDecoration(),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/fon.jpg'),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                            Colors.white.withOpacity(0.1), BlendMode.dstATop))),
+                //decoration: ScreenDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,8 +57,15 @@ class HomePage extends StatelessWidget {
             elevation: 4,
             backgroundColor: Color(0xFF20536c),
             //Color(0xFF3EB16F), //Color(0xFF3EB16F),
-            child: Icon(
-              Icons.add,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/tabl5.png'),
+                  )),
+              child: Icon(
+                Icons.add,
+              ),
             ),
             onPressed: () {
               Navigator.push(
@@ -112,7 +124,7 @@ class TopContainer extends StatelessWidget {
         //gradient: CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
         //Color(0xFF8aedb4)
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.elliptical(50,50),
+          bottomLeft: Radius.elliptical(50, 50),
           bottomRight: Radius.elliptical(50, 50),
         ),
         //   border:  Border.all(color: Color(0xFFB0F3CB),),
@@ -135,11 +147,11 @@ class TopContainer extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(top: 20 * UI.scaleFactorH),
               child: Text(
-                "Med reminder",
+                "Medication reminder",
                 style: TextStyle(
-                  fontFamily: 'Arizonia',
+                  fontFamily: 'Faustina',
                   //'Italianno',//'Arizonia',//'PermanentMarker',
-                  fontSize: 55 * UI.scaleFactorH,
+                  fontSize: 40 * UI.scaleFactorH,
                   color: Colors.white,
                   //color: Color(0xFF3EB16F), //Colors.white,
                 ),

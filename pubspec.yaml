@@ -92,6 +92,9 @@ flutter:
     - family: Arizonia
       fonts:
         - asset: assets/fonts/Arizonia-Regular.ttf
+    - family: Faustina
+      fonts:
+          - asset: assets/fonts/Faustina-Regular.ttf
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Regular.ttf

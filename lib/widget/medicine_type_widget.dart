@@ -26,22 +26,19 @@ class MedicineTypeColumn extends StatelessWidget {
         _newEntryModel.updateSelectedMedicine(type);
       },
       child: Column(
-
         children: <Widget>[
           Container(
-
-            width: 88* UI.scaleFactorW,
-
+            width: 88 * UI.scaleFactorW,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: isSelected ? Color(0xFF20536c) : Colors.white,
+              color: isSelected ? Color(0xFF20536c) : Colors.transparent,
             ),
             child: Center(
               child: Padding(
                 padding: EdgeInsets.only(top: 14.0),
                 child: Icon(
                   IconData(iconValue, fontFamily: "Ic"), //"GalleryIcons"
-                  size: 65*UI.scaleFactorH,
+                  size: 65 * UI.scaleFactorH,
                   color: isSelected ? Colors.white : Color(0xFF20536c),
                 ),
               ),

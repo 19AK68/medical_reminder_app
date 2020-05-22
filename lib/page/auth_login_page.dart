@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 class AuthPage extends StatelessWidget {
   final GlobalKey _scaffoldKey = GlobalKey();
 
-
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<LoginModel>(context);
@@ -18,6 +17,12 @@ class AuthPage extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       key: _scaffoldKey,
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/fon.jpg'),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.3), BlendMode.dstATop))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,10 +32,10 @@ class AuthPage extends StatelessWidget {
               child: Center(
 //
                 child: Text(
-                  "Mediminder",
+                  "", //"Medication reminder",
                   style: TextStyle(
-                      fontFamily: 'Arizonia',
-                      fontSize: 50 * UI.scaleFactorH,
+                      fontFamily: 'Faustina',
+                      fontSize: 36 * UI.scaleFactorH,
                       color: Color(0xFF20536c)),
                 ),
               ),
@@ -136,7 +141,11 @@ class AuthPage extends StatelessWidget {
               child: Align(
                 child: Container(
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Color(0xFF20536c)),
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/tabl5.png'),
+                        fit: BoxFit.cover,
+                      )), //color: Color(0xFF20536c)
                   width: 150,
                   height: 150,
                 ),
@@ -150,9 +159,9 @@ class AuthPage extends StatelessWidget {
                     child: Text(
                       "GO",
                       style: TextStyle(
-                        fontSize: 100,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        fontSize: 80,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white.withOpacity(1),
                       ),
                     ),
                   )),
@@ -162,9 +171,17 @@ class AuthPage extends StatelessWidget {
               height: MediaQuery.of(context).size.width * 0.15,
               bottom: MediaQuery.of(context).size.height * 0.046,
               right: MediaQuery.of(context).size.width * 0.22,
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xFF20536c)),
+              child: RotatedBox(
+                quarterTurns: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('assets/tabl5.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
             ),
             Positioned(
@@ -174,7 +191,12 @@ class AuthPage extends StatelessWidget {
               right: MediaQuery.of(context).size.width * 0.32,
               child: Container(
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xFF20536c)),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/tabl5.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ],
@@ -211,158 +233,157 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         body:
-         // color: Colors.blue,
+            // color: Colors.blue,
 
-             Container(
-               padding: EdgeInsets.only(top: 120),
-
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40.0),
-                    topRight: Radius.circular(40.0)),
-                child: Container(
-               //   color: Colors.blue,
-                  child: ListView(
-                    children: <Widget>[
-                      Container(
-                        child: Stack(
-                          children: <Widget>[
-                            Positioned(
-                              left: 10,
-                              top: 10,
-                              child: IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
+            Container(
+          padding: EdgeInsets.only(top: 120),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.0),
+                topRight: Radius.circular(40.0)),
+            child: Container(
+              //   color: Colors.blue,
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          left: 10,
+                          top: 10,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
 //                                  _emailController.clear();
 //                                  _passwordController.clear();
-                                },
-                                icon: Icon(
-                                  Icons.close,
-                                  size: 30.0,
-                                  //color: Color(0xFF20536c),
-                                  color: Colors.white,
-
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        height: 50,
-                        width: 50,
-                      ),
-                      Container(
-
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 140,
-                                child: Stack(
-                                  children: <Widget>[
-                                    Positioned(
-                                      child: Align(
-                                        child: Container(
-                                          width: 250,
-                                          height: 250,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white), //Theme.of(context)         .primaryColor),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      child: Container(
-                                        child: Text(
-                                          "REGISTER",
-                                          style: TextStyle(
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold, color: Color(0xFF20536c), //Colors.white,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                                padding: EdgeInsets.only(bottom: 20, top: 60),
-                                child: InputField(
-                                  icon: Icon(Icons.email),
-                                  hint: "Email",
-                                  controller: _emailController,
-                                  obsecure: false,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 20),
-                                child: InputField(
-                                    icon: Icon(Icons.lock),
-                                    hint: "Password",
-                                    controller: _passwordController,
-                                    obsecure: true),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
-                                    bottom: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom),
-                                child: Container(
-                                  child: RaisedButton(
-                                    child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: UI.marginStandard),
-                                        child: Text(
-                                          "Login",
-                                          style: TextStyle(color: Colors.white),
-                                        )),
-                                    highlightElevation: 0.0,
-                                    splashColor: Colors.white,
-                                    highlightColor: Color(0xFF20536c),
-                                    elevation: 0.0,
-                                    color: Color(0xFF20536c),
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Colors.white,
-                                          style: BorderStyle.solid,
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(30.0),
-                                    ),
-                                    onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                      ),
-                                    ),
-                                  ),
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              size: 30.0,
+                              //color: Color(0xFF20536c),
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ),
-                    ],
+                        )
+                      ],
+                    ),
+                    height: 50,
+                    width: 50,
                   ),
-                  height: MediaQuery.of(context).size.height ,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  //color: Colors.blue,
-                ),
+                  Container(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 140,
+                            child: Stack(
+                              children: <Widget>[
+                                Positioned(
+                                  child: Align(
+                                    child: Container(
+                                      width: 250,
+                                      height: 250,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors
+                                              .white), //Theme.of(context)         .primaryColor),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                                Positioned(
+                                  child: Container(
+                                    child: Text(
+                                      "REGISTER",
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color(0xFF20536c), //Colors.white,
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                            padding: EdgeInsets.only(bottom: 20, top: 60),
+                            child: InputField(
+                              icon: Icon(Icons.email),
+                              hint: "Email",
+                              controller: _emailController,
+                              obsecure: false,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: InputField(
+                                icon: Icon(Icons.lock),
+                                hint: "Password",
+                                controller: _passwordController,
+                                obsecure: true),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: Container(
+                              child: RaisedButton(
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: UI.marginStandard),
+                                    child: Text(
+                                      "Login",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                highlightElevation: 0.0,
+                                splashColor: Colors.white,
+                                highlightColor: Color(0xFF20536c),
+                                elevation: 0.0,
+                                color: Color(0xFF20536c),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: Colors.white,
+                                      style: BorderStyle.solid,
+                                      width: 1),
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
+                                  ),
+                                ),
+                              ),
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ));
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.white,
+              //color: Colors.blue,
+            ),
+          ),
+        ));
 
     /*Scaffold(
       appBar: AppBar(),

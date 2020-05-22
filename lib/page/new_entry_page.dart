@@ -35,6 +35,12 @@ class NewEntryPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/fon.jpg'),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.07), BlendMode.dstATop))),
         //decoration: ScreenDecoration(),
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: UI.marginStandardDouble),
