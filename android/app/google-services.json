@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "176834897895",
+    "firebase_url": "https://medical-reminder-b2acb.firebaseio.com",
+    "project_id": "medical-reminder-b2acb",
+    "storage_bucket": "medical-reminder-b2acb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176834897895:android:65ebd744590a337b53ff42",
+        "android_client_info": {
+          "package_name": "com.ak.medical_reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176834897895-a2lsm90a5ojqecdkpirt0jki2ev4kk5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcQA8TOIuvPIZUdPj7KNkEvYGlpbP5jhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176834897895-a2lsm90a5ojqecdkpirt0jki2ev4kk5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
