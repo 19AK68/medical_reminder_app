@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/page/model/medical_item.dart';
 import 'package:medical_reminder/util/enums/medicine_type.dart';
+import 'package:medical_reminder/view_model/base_model.dart';
 
-class NewEntryModel with ChangeNotifier {
+class NewEntryModel extends BaseModel {
   NewEntryModel();
   MedicalItem medicalItem = MedicalItem();
   List<MedicalItem> _medicalItemList = [];

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:medical_reminder/page/home_page.dart';
+import 'package:medical_reminder/page/register_page.dart';
 import 'package:medical_reminder/util/clipper.dart';
+import 'package:medical_reminder/util/enums/auth_type.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/widget/field_input_widget.dart';
@@ -14,7 +17,7 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<LoginModel>(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: true,
       key: _scaffoldKey,
       body: Container(
         decoration: BoxDecoration(
@@ -31,13 +34,13 @@ class AuthPage extends StatelessWidget {
               padding: EdgeInsets.only(top: UI.marginStandardDouble),
               child: Center(
 //
-                child: Text(
-                  "", //"Medication reminder",
-                  style: TextStyle(
-                      fontFamily: 'Faustina',
-                      fontSize: 36 * UI.scaleFactorH,
-                      color: Color(0xFF20536c)),
-                ),
+//                child: Text(
+//                   "",//"Medication reminder",
+//                  style: TextStyle(
+//                      fontFamily: 'Faustina',
+//                      fontSize: 36 * UI.scaleFactorH,
+//                      color: Color(0xFF20536c)),
+//                ),
               ),
             ),
             logo(context),
@@ -53,7 +56,7 @@ class AuthPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 20*UI.scaleFactorH),
                     )),
                 highlightElevation: 0.0,
                 splashColor: Colors.white,
@@ -65,12 +68,22 @@ class AuthPage extends StatelessWidget {
                       color: Colors.white, style: BorderStyle.solid, width: 1),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                ),
+                onPressed: () {
+                  Navigator.of(context).push(_createRegisterRoute(AuthType.Login));
+
+//                  if(model.isLoading){
+//                    return Navigator.push(
+//                      context,
+//                      MaterialPageRoute(
+//                        builder: (context) => HomePage(),
+//                      ),
+//                    );
+//                  }
+//                  print("Login Error!");
+//                  return null;
+
+
+                },
               ),
             ),
 
@@ -86,7 +99,7 @@ class AuthPage extends StatelessWidget {
                       child: Text(
                         "Register",
                         style:
-                            TextStyle(color: Color(0xFF20536c), fontSize: 16),
+                            TextStyle(color: Color(0xFF20536c), fontSize: 20*UI.scaleFactorH),
                       )),
                   highlightElevation: 0.0,
                   splashColor: Color(0xFF20536c),
@@ -101,7 +114,7 @@ class AuthPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(_createRegisterRoute());
+                    Navigator.of(context).push(_createRegisterRoute(AuthType.Register));
                   }
 //                    => showPress(context, _emailController,
 //                    _passwordController), //loginSheet(context),
@@ -129,6 +142,7 @@ class AuthPage extends StatelessWidget {
   }
 
   Widget logo([BuildContext context]) {
+
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
       child: Container(
@@ -147,23 +161,50 @@ class AuthPage extends StatelessWidget {
                         fit: BoxFit.cover,
                       )), //color: Color(0xFF20536c)
                   width: 150,
-                  height: 150,
+                  height:150,
                 ),
               ),
-              height: 154,
+              height: 150,
             )),
             Positioned(
               child: Container(
-                  height: 154,
-                  child: Align(
-                    child: Text(
-                      "GO",
-                      style: TextStyle(
-                        fontSize: 80,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white.withOpacity(1),
-                      ),
+                  height: 150,
+                  child: Center(
+
+                    child:Column(
+
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+
+                      children: <Widget>[
+                        Text(
+                          "Medication",
+                          style: TextStyle(
+                              fontFamily: 'Arizonia',
+                              fontSize:30 * UI.scaleFactorH,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white.withOpacity(1)),
+                        ),
+                        Text(
+                          "remainder",
+                          style: TextStyle(
+                              fontFamily: 'Arizonia',
+                              fontSize: 30 * UI.scaleFactorH,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white.withOpacity(1)),
+                        ),
+                      ],
                     ),
+
+//                    child: Text(
+//                      "GO",
+//                      style: TextStyle(
+//                        fontSize: 80,
+//                        fontWeight: FontWeight.w700,
+//                        color: Colors.white.withOpacity(1),
+//                      ),
+//                    ),
                   )),
             ),
             Positioned(
@@ -206,9 +247,11 @@ class AuthPage extends StatelessWidget {
   }
 }
 
-Route _createRegisterRoute() {
+Route _createRegisterRoute(AuthType _authType) {
+   AuthType authType = _authType ;
+
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => RegisterPage(),
+    pageBuilder: (context, animation, secondaryAnimation) => InputOrRegisterPage(authType: authType),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);
       var end = Offset.zero;
@@ -224,175 +267,7 @@ Route _createRegisterRoute() {
   );
 }
 
-class RegisterPage extends StatelessWidget {
-  static TextEditingController _emailController = TextEditingController();
-  static TextEditingController _passwordController = TextEditingController();
-  static TextEditingController _nameController = TextEditingController();
 
-  Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body:
-            // color: Colors.blue,
-
-            Container(
-          padding: EdgeInsets.only(top: 120),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40.0),
-                topRight: Radius.circular(40.0)),
-            child: Container(
-              //   color: Colors.blue,
-              child: ListView(
-                children: <Widget>[
-                  Container(
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned(
-                          left: 10,
-                          top: 10,
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-//                                  _emailController.clear();
-//                                  _passwordController.clear();
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              size: 30.0,
-                              //color: Color(0xFF20536c),
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    height: 50,
-                    width: 50,
-                  ),
-                  Container(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 140,
-                            child: Stack(
-                              children: <Widget>[
-                                Positioned(
-                                  child: Align(
-                                    child: Container(
-                                      width: 250,
-                                      height: 250,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors
-                                              .white), //Theme.of(context)         .primaryColor),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                                Positioned(
-                                  child: Container(
-                                    child: Text(
-                                      "REGISTER",
-                                      style: TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xFF20536c), //Colors.white,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                            padding: EdgeInsets.only(bottom: 20, top: 60),
-                            child: InputField(
-                              icon: Icon(Icons.email),
-                              hint: "Email",
-                              controller: _emailController,
-                              obsecure: false,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 20),
-                            child: InputField(
-                                icon: Icon(Icons.lock),
-                                hint: "Password",
-                                controller: _passwordController,
-                                obsecure: true),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 20,
-                                right: 20,
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: Container(
-                              child: RaisedButton(
-                                child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: UI.marginStandard),
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(color: Colors.white),
-                                    )),
-                                highlightElevation: 0.0,
-                                splashColor: Colors.white,
-                                highlightColor: Color(0xFF20536c),
-                                elevation: 0.0,
-                                color: Color(0xFF20536c),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      color: Colors.white,
-                                      style: BorderStyle.solid,
-                                      width: 1),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomePage(),
-                                  ),
-                                ),
-                              ),
-                              height: 50,
-                              width: MediaQuery.of(context).size.width,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              //color: Colors.blue,
-            ),
-          ),
-        ));
-
-    /*Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Text('Page 2'),
-      ),
-    );*/
-  }
-}
 
 void showPress(
   BuildContext context,

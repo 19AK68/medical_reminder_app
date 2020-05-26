@@ -16,12 +16,12 @@ class InputField extends StatelessWidget {
         controller: controller,
         obscureText: obsecure,
         style: TextStyle(
-          fontSize: 20,
-            color: Color(0xFFbdc6cf)
-        ),
+            fontSize: 20,
+            color: Color(0xFF20536c).withOpacity(0.9) //Color(0xFFbdc6cf)
+            ),
         decoration: InputDecoration(
-            hintStyle: TextStyle( fontSize: 20,color:Color(0xFF20536c)  ),
-            hintText: hint?? " ",
+            hintStyle: TextStyle(fontSize: 20, color: Color(0xFF20536c)),
+            hintText: hint ?? " ",
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(

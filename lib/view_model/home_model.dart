@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-class HomeModel  with ChangeNotifier {
+import 'base_model.dart';
+
+class HomeModel extends BaseModel {
   HomeModel();
 
   String _displayText = "";

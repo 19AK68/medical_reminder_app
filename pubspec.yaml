@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^2.2.0+1
   firebase_auth: ^0.16.0
   google_sign_in: ^4.5.1
+  get_it: ^4.0.2
 
   random_string: ^2.0.1
 
