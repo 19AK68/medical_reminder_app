@@ -9,50 +9,43 @@ class LoginModel extends BaseModel {
 
   AuthService authService = new AuthService();
 
-  bool isLoading = false;
+  bool isCorrect = false;
 
-  login(AuthType authType, String email, String password) async {
+  Future <void> login(AuthType authType, String email, String password) async {
     setBusy(true);
-    print("isLoading 1 " + isLoading.toString());
+    print("isLoading 1 " + isCorrect.toString());
 
     if (authType == AuthType.Login) {
       var result = await authService.loginWithEmail(email, password);
       setBusy(false);
-      print("isLoading 2 " + isLoading.toString());
-      print("Resukt" + result.toString());
+      print("isLoading 2 " + isCorrect.toString());
+
       if (result != null) {
         print(" Login  OK");
-        isLoading = true;
+        isCorrect = true;
+        notifyListeners();
+
       }
     }
-    print("isLoading 3 " + isLoading.toString());
+    print("isLoading 3 " + isCorrect.toString());
 
     if (authType == AuthType.Register) {
       await authService.signUpWithEmail(email, password).then((value) {
         if (value != null) {
-          print(" RRRRRRRR  OK");
 
-          isLoading = true;
+          isCorrect = true;
+          notifyListeners();
         } else {
-          isLoading = false;
-          print("RRRRRRRRR NOT OK");
+          isCorrect = false;
+          notifyListeners();
         }
       });
     }
 
-    print("isLoading 4  " + isLoading.toString());
+    print("isLoading 4  " + isCorrect.toString());
   }
 
-  register(String email, String password) async {
-    var result = await authService.signUpWithEmail(email, password);
-    print("Create User " + result.toString());
 
-    if (result != null) {
-      isLoading = true;
-
-      notifyListeners();
-    }
-  }
 
   String titleText(AuthType authType) {
     String resultTitle;

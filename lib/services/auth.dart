@@ -9,7 +9,7 @@ class AuthService{
 
   }
 
-  Future loginWithEmail( @required String email,  @required String password) async {
+  Future loginWithEmail(  String email,   String password) async {
     try{
       AuthResult authResult = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       FirebaseUser firebaseUser = authResult.user;
@@ -32,7 +32,7 @@ class AuthService{
 
     }catch(e){
       print("signUPEmailAndPassword error: " + e.toString());
-      return e;
+      return null;
     }
 
   }

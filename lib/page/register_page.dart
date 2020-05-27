@@ -163,28 +163,20 @@ class InputOrRegisterPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           onPressed: () {
-                           var res = model.login(authType, _emailController.text,
-                                _passwordController.text);
+                            model.login(authType, _emailController.text,
+                                _passwordController.text).then((val){
+                              if (model.isCorrect) {
+                                return Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePage()));
+                              } else {
+                                return null;
+                              }
+                            } );
 
-                           print ("RES RES RES" + res.toString());
-
-                           if(res is bool){
-                             if(res){
-                               print ("YESSSSSSSSSSSSSSSSSSSSSSSS");
-                             } else {
-                               print ("NOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-                             }
-                           }
 
 
-                            if (model.isLoading) {
-                              return Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()));
-                            } else {
-                              return null;
-                            }
 
 //                            if (model.isLoading) {
 //                              return Navigator.push(
