@@ -39,7 +39,8 @@ class InputField extends StatelessWidget {
         decoration: InputDecoration(
             hintStyle: TextStyle(fontSize: 20, color: Color(0xFF20536c)),
             hintText: hint ?? " ",
-            errorText: model.valitedateText(controller.text, inputField),
+            errorText:
+                "Error Text", //model.valitedateInput(controller.text, inputField),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
@@ -63,6 +64,7 @@ class InputField extends StatelessWidget {
               ),
               padding: EdgeInsets.only(left: 30, right: 10),
             )),
+        onChanged: (String value) {},
       ),
     );
   }

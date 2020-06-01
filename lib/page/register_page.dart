@@ -70,7 +70,6 @@ class InputOrRegisterPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      //    color:Colors.red,
                       width: MediaQuery.of(context).size.width,
                       height: 70,
                       child: Stack(

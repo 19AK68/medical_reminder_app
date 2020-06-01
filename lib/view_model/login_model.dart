@@ -53,7 +53,7 @@ class LoginModel extends BaseModel {
     return resultTitle;
   }
 
-  String valitedateText(String value, LoginInputField inputField) {
+  String valitedateInput(String value, LoginInputField inputField) {
     switch (inputField) {
       case LoginInputField.NAME:
         {
