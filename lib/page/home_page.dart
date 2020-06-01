@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:medical_reminder/page/new_entry_page.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
+import 'package:medical_reminder/widget/custom_appbar_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,15 @@ class HomePage extends StatelessWidget {
       child: Container(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Color(0xFF20536c),
+            ),
+            title: CustomAppBar(),
+            brightness: Brightness.light,
+            elevation: 0.0,
+            backgroundColor: Colors.transparent,
+          ),
           body: Stack(
             children: <Widget>[
               Container(
@@ -24,45 +34,42 @@ class HomePage extends StatelessWidget {
                         colorFilter: ColorFilter.mode(
                             Colors.white.withOpacity(0.1), BlendMode.dstATop))),
                 //decoration: ScreenDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Flexible(
-                      flex: 6,
-                      child: TopContainer(),
-                    ),
-                    SizedBox(
-                      height: 10 * UI.scaleFactorH,
-                    ),
-                    Flexible(
-                      flex: 11,
-                      child: Center(
-                          child: Text(
-                        model.mainTitle,
-                        style: TextStyle(
-                          fontSize: 18 * UI.scaleFactorH,
-                          color: Colors.grey[400],
-                        ),
-                      )),
-                    ),
-                  ],
-                ),
+                // child: Column(
+                //   mainAxisSize: MainAxisSize.max,
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                //   children: <Widget>[
+                //     Flexible(
+                //       flex: 6,
+                //       child: TopContainer(),
+                //     ),
+                //     SizedBox(
+                //       height: 10 * UI.scaleFactorH,
+                //     ),
+                //     Flexible(
+                //       flex: 11,
+                //       child: Center(
+                //           child: Text(
+                //         model.mainTitle,
+                //         style: TextStyle(
+                //           fontSize: 18 * UI.scaleFactorH,
+                //           color: Colors.grey[400],
+                //         ),
+                //       )),
+                //     ),
+                //   ],
+                // ),
               ),
             ],
           ),
-
           floatingActionButton: FloatingActionButton(
             elevation: 4,
             backgroundColor: Color(0xFF20536c),
             //Color(0xFF3EB16F), //Color(0xFF3EB16F),
             child: Container(
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage('assets/tabl5.png'),
-                  )),
+                shape: BoxShape.circle,
+              ),
               child: Icon(
                 Icons.add,
               ),
@@ -76,37 +83,6 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-
-//          Container(
-//            height: 92 * UI.scaleFactorH,
-//            width: 175 * UI.scaleFactorH,
-//            child: Column(
-//              children: <Widget>[
-//                GradientButton(
-//                    child: Icon(
-//                      Icons.add,
-//                      color: Colors.white,
-//                      size: 28 * UI.scaleFactorH,
-//                    ),
-//
-////                    child: Text(
-////                      "ADD",
-////                      style: TextStyle(
-////                          color: Colors.white, fontWeight: FontWeight.w800),
-////                    ),
-//                    gradient:
-//                        CustomGradient(Color(0xFFB0F3CB), Color(0xFF3EB16F)),
-//                    onPressed: () {
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(
-//                          builder: (context) => NewEntryPage(),
-//                        ),
-//                      );
-//                    }),
-//              ],
-//            ),
-//          ),
         ),
       ),
     );

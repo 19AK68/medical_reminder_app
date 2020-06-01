@@ -12,7 +12,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         obscureText: obsecure,
         style: TextStyle(
