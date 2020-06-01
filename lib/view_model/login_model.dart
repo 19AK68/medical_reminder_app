@@ -1,17 +1,16 @@
-
 import 'package:medical_reminder/services/auth.dart';
 import 'package:medical_reminder/util/enums/auth_type.dart';
+import 'package:medical_reminder/util/enums/login_input_field.dart';
 import 'package:medical_reminder/view_model/base_model.dart';
 
 class LoginModel extends BaseModel {
-
   LoginModel();
 
   AuthService authService = new AuthService();
 
   bool isCorrect = false;
 
-  Future <void> login(AuthType authType, String email, String password) async {
+  Future<void> login(AuthType authType, String email, String password) async {
     setBusy(true);
     print("isLoading 1 " + isCorrect.toString());
 
@@ -24,7 +23,6 @@ class LoginModel extends BaseModel {
         print(" Login  OK");
         isCorrect = true;
         notifyListeners();
-
       }
     }
     print("isLoading 3 " + isCorrect.toString());
@@ -32,7 +30,6 @@ class LoginModel extends BaseModel {
     if (authType == AuthType.Register) {
       await authService.signUpWithEmail(email, password).then((value) {
         if (value != null) {
-
           isCorrect = true;
           notifyListeners();
         } else {
@@ -45,8 +42,6 @@ class LoginModel extends BaseModel {
     print("isLoading 4  " + isCorrect.toString());
   }
 
-
-
   String titleText(AuthType authType) {
     String resultTitle;
     if (authType == AuthType.Login) {
@@ -56,5 +51,24 @@ class LoginModel extends BaseModel {
     }
 
     return resultTitle;
+  }
+
+  String valitedateText(String value, LoginInputField inputField) {
+    switch (inputField) {
+      case LoginInputField.NAME:
+        {
+          if (!(value.length > 2) && value.isNotEmpty) {
+            notifyListeners();
+            return "Name should contains more then 2 character";
+          }
+          notifyListeners();
+          break;
+        }
+
+      default:
+        notifyListeners();
+    }
+
+    return null;
   }
 }

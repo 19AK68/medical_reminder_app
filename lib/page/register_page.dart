@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/page/home_page.dart';
 import 'package:medical_reminder/util/enums/auth_type.dart';
+import 'package:medical_reminder/util/enums/login_input_field.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/widget/field_input_widget.dart';
@@ -50,6 +51,7 @@ class InputOrRegisterPage extends StatelessWidget {
                           Navigator.of(context).pop();
                           _emailController.clear();
                           _passwordController.clear();
+                          _nameController.clear();
                         },
                         icon: Icon(
                           Icons.close,
@@ -107,10 +109,20 @@ class InputOrRegisterPage extends StatelessWidget {
                             //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                             padding: EdgeInsets.only(bottom: 20, top: 20),
                             child: InputField(
+                              inputField: LoginInputField.NAME,
                               icon: Icon(Icons.person),
                               hint: "Name",
                               controller: _nameController,
                               obsecure: false,
+                              // validator: (String arg) {
+                              //   if (arg.isEmpty) {
+                              //     return 'Name cannot be blank';
+                              //   }
+                              //   if (arg.length < 3)
+                              //     return 'Name must be more than 2 charater';
+                              //   else
+                              //     return null;
+                              // },
                             ),
                           )
                         : Container(),
@@ -118,6 +130,7 @@ class InputOrRegisterPage extends StatelessWidget {
                       //padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                       padding: EdgeInsets.only(bottom: 20, top: 20),
                       child: InputField(
+                        inputField: LoginInputField.EMAIL,
                         icon: Icon(Icons.email),
                         hint: "Email",
                         controller: _emailController,
@@ -127,6 +140,7 @@ class InputOrRegisterPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(
+                          inputField: LoginInputField.PASSWORD,
                           icon: Icon(Icons.lock),
                           hint: "Password",
                           controller: _passwordController,
@@ -163,8 +177,10 @@ class InputOrRegisterPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           onPressed: () {
-                            model.login(authType, _emailController.text,
-                                _passwordController.text).then((val){
+                            model
+                                .login(authType, _emailController.text,
+                                    _passwordController.text)
+                                .then((val) {
                               if (model.isCorrect) {
                                 return Navigator.push(
                                     context,
@@ -173,10 +189,7 @@ class InputOrRegisterPage extends StatelessWidget {
                               } else {
                                 return null;
                               }
-                            } );
-
-
-
+                            });
 
 //                            if (model.isLoading) {
 //                              return Navigator.push(
