@@ -6,11 +6,13 @@ class RegistrValidation with ChangeNotifier {
   ValidationItem _email = ValidationItem(null, null);
   ValidationItem _password = ValidationItem(null, null);
 
+  // getter
+
   ValidationItem get name => _name;
   ValidationItem get email => _email;
   ValidationItem get password => _password;
 
-//Setter
+ //Setter
 
   void changeName(String value) {
     if (!(value.length > 2) && value.isNotEmpty) {
