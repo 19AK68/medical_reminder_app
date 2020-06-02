@@ -12,16 +12,18 @@ class RegistrValidation with ChangeNotifier {
   ValidationItem get email => _email;
   ValidationItem get password => _password;
 
- //Setter
+  //Setter
 
   void changeName(String value) {
-    if (!(value.length > 2) && value.isNotEmpty) {
+    print("Name  : $value");
+    if (!(value.length > 2) && value.isNotEmpty && value != null) {
       _name = ValidationItem(value, null);
     } else {
       _name =
           ValidationItem(null, "Name should contains more then 2 character");
     }
     notifyListeners();
+    print("Name 2  : $value");
   }
 
   void changePassword(String value) {

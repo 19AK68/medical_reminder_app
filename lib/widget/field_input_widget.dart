@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:medical_reminder/util/enums/login_input_field.dart';
-import 'package:medical_reminder/view_model/login_model.dart';
-import 'package:provider/provider.dart';
 
 class InputField extends StatelessWidget {
   final LoginInputField inputField;
@@ -10,21 +8,25 @@ class InputField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final bool obsecure;
+  final Function onChanged;
+  final String errorText;
   //final String Function(String) errorText;
   // final String Function(String) validator;
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  InputField({
-    this.icon,
-    this.hint,
-    this.controller,
-    this.obsecure,
-    this.inputField,
-  });
+  InputField(
+      {this.icon,
+      this.hint,
+      this.controller,
+      this.obsecure,
+      this.inputField,
+      this.errorText,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<LoginModel>(context);
+//    final model = Provider.of<LoginModel>(context);
+
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
       child: TextFormField(
@@ -39,8 +41,8 @@ class InputField extends StatelessWidget {
         decoration: InputDecoration(
             hintStyle: TextStyle(fontSize: 20, color: Color(0xFF20536c)),
             hintText: hint ?? " ",
-            errorText:
-                "Error Text", //model.valitedateInput(controller.text, inputField),
+            errorText: errorText,
+            //"Error Text", //model.valitedateInput(controller.text, inputField),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
@@ -64,7 +66,7 @@ class InputField extends StatelessWidget {
               ),
               padding: EdgeInsets.only(left: 30, right: 10),
             )),
-        onChanged: (String value) {},
+        onChanged: onChanged,
       ),
     );
   }

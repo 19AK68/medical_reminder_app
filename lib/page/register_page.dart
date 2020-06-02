@@ -3,6 +3,7 @@ import 'package:medical_reminder/page/home_page.dart';
 import 'package:medical_reminder/util/enums/auth_type.dart';
 import 'package:medical_reminder/util/enums/login_input_field.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
+
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/widget/field_input_widget.dart';
 import 'package:provider/provider.dart';
@@ -111,8 +112,13 @@ class InputOrRegisterPage extends StatelessWidget {
                               inputField: LoginInputField.NAME,
                               icon: Icon(Icons.person),
                               hint: "Name",
+                              errorText: model.name.error,
                               controller: _nameController,
                               obsecure: false,
+                              onChanged: (String value ) {
+                                print("value" + value);
+                                model.changeName(value);
+                              },
                               // validator: (String arg) {
                               //   if (arg.isEmpty) {
                               //     return 'Name cannot be blank';
@@ -132,18 +138,27 @@ class InputOrRegisterPage extends StatelessWidget {
                         inputField: LoginInputField.EMAIL,
                         icon: Icon(Icons.email),
                         hint: "Email",
+                        errorText: model.email.error,
                         controller: _emailController,
                         obsecure: false,
+                        onChanged: (String value) {
+                          model.changeEmail(value);
+                        },
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(
-                          inputField: LoginInputField.PASSWORD,
-                          icon: Icon(Icons.lock),
-                          hint: "Password",
-                          controller: _passwordController,
-                          obsecure: true),
+                        inputField: LoginInputField.PASSWORD,
+                        icon: Icon(Icons.lock),
+                        hint: "Password",
+                        errorText: model.password.error,
+                        controller: _passwordController,
+                        obsecure: true,
+                        onChanged: (String value) {
+                          model.changePassword(value);
+                        },
+                      ),
                     ),
                     SizedBox(
                       height: 20,

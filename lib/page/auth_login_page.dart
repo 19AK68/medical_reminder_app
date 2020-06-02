@@ -41,7 +41,7 @@ class AuthPage extends StatelessWidget {
 //                      fontSize: 36 * UI.scaleFactorH,
 //                      color: Color(0xFF20536c)),
 //                ),
-              ),
+                  ),
             ),
             logo(context),
             //Column(
@@ -56,7 +56,8 @@ class AuthPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Colors.white, fontSize: 20*UI.scaleFactorH),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 20 * UI.scaleFactorH),
                     )),
                 highlightElevation: 0.0,
                 splashColor: Colors.white,
@@ -69,7 +70,8 @@ class AuthPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(_createRegisterRoute(AuthType.Login));
+                  Navigator.of(context)
+                      .push(_createRegisterRoute(AuthType.Login));
 
 //                  if(model.isLoading){
 //                    return Navigator.push(
@@ -81,8 +83,6 @@ class AuthPage extends StatelessWidget {
 //                  }
 //                  print("Login Error!");
 //                  return null;
-
-
                 },
               ),
             ),
@@ -98,8 +98,9 @@ class AuthPage extends StatelessWidget {
                           EdgeInsets.symmetric(vertical: UI.marginStandard),
                       child: Text(
                         "Register",
-                        style:
-                            TextStyle(color: Color(0xFF20536c), fontSize: 20*UI.scaleFactorH),
+                        style: TextStyle(
+                            color: Color(0xFF20536c),
+                            fontSize: 20 * UI.scaleFactorH),
                       )),
                   highlightElevation: 0.0,
                   splashColor: Color(0xFF20536c),
@@ -114,7 +115,8 @@ class AuthPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(_createRegisterRoute(AuthType.Register));
+                    Navigator.of(context)
+                        .push(_createRegisterRoute(AuthType.Register));
                   }
 //                    => showPress(context, _emailController,
 //                    _passwordController), //loginSheet(context),
@@ -142,7 +144,6 @@ class AuthPage extends StatelessWidget {
   }
 
   Widget logo([BuildContext context]) {
-
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
       child: Container(
@@ -161,7 +162,7 @@ class AuthPage extends StatelessWidget {
                         fit: BoxFit.cover,
                       )), //color: Color(0xFF20536c)
                   width: 150,
-                  height:150,
+                  height: 150,
                 ),
               ),
               height: 150,
@@ -170,19 +171,15 @@ class AuthPage extends StatelessWidget {
               child: Container(
                   height: 150,
                   child: Center(
-
-                    child:Column(
-
-                     crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-
-
                       children: <Widget>[
                         Text(
                           "Medication",
                           style: TextStyle(
                               fontFamily: 'Arizonia',
-                              fontSize:30 * UI.scaleFactorH,
+                              fontSize: 30 * UI.scaleFactorH,
                               fontWeight: FontWeight.w700,
                               color: Colors.white.withOpacity(1)),
                         ),
@@ -248,10 +245,11 @@ class AuthPage extends StatelessWidget {
 }
 
 Route _createRegisterRoute(AuthType _authType) {
-   AuthType authType = _authType ;
+  AuthType authType = _authType;
 
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => InputOrRegisterPage(authType: authType),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        InputOrRegisterPage(authType: authType),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);
       var end = Offset.zero;
@@ -266,8 +264,6 @@ Route _createRegisterRoute(AuthType _authType) {
     },
   );
 }
-
-
 
 void showPress(
   BuildContext context,
