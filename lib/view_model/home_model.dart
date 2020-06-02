@@ -1,6 +1,3 @@
-
-import 'package:flutter/material.dart';
-
 import 'base_model.dart';
 
 class HomeModel extends BaseModel {
@@ -10,8 +7,6 @@ class HomeModel extends BaseModel {
   String mainTitle = " Press + to add a Medimcal Reminder ";
   String numberMed = '0';
 
-
-
   String setDisplayText(String text) {
     _displayText = text;
     notifyListeners();
@@ -19,5 +14,4 @@ class HomeModel extends BaseModel {
   }
 
   String get getDisplayText => _displayText;
-
 }

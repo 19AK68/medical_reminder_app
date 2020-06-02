@@ -6,10 +6,7 @@ import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
 
-import 'page/home_page.dart';
-
 class MedicalReminderApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

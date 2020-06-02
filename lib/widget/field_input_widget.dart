@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical_reminder/util/enums/auth_type.dart';
+
 import 'package:medical_reminder/util/enums/login_input_field.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:provider/provider.dart';

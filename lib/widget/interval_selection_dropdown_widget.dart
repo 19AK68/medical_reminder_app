@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical_reminder/util/ui_helper.dart';
+
 import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +8,7 @@ class IntervalSelectionDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<NewEntryModel>(context);
     return Padding(
-      padding: EdgeInsets.only(top: 4),//UI.marginStandardHalf/2),
+      padding: EdgeInsets.only(top: 4), //UI.marginStandardHalf/2),
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,8 +52,7 @@ class IntervalSelectionDropDown extends StatelessWidget {
                 model.changeInterval(newVal);
                 // model.selectedInterval = newVal;
                 // print(" newVal " + newVal.toString());
-                // model.timeInterval = model.selectedInterval.toString(); 
-              
+                // model.timeInterval = model.selectedInterval.toString();
               },
             ),
             Text(
