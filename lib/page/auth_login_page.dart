@@ -248,6 +248,7 @@ Route _createRegisterRoute(AuthType _authType) {
   AuthType authType = _authType;
 
   return PageRouteBuilder(
+    
     pageBuilder: (context, animation, secondaryAnimation) =>
         InputOrRegisterPage(authType: authType),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
