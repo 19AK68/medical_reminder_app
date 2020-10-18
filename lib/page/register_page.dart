@@ -17,7 +17,7 @@ class InputOrRegisterPage extends StatelessWidget {
   InputOrRegisterPage({this.authType});
 
   Widget build(BuildContext context) {
-    final model = Provider.of<LoginModel>(context);
+    final model = Provider.of<LoginModel>(context, listen: false);
 
     return Scaffold(
         // resizeToAvoidBottomPadding: true,

@@ -97,7 +97,7 @@ class LoginModel extends BaseModel {
   }
 
   void changePassword(String value) {
-    if (!(value.length > 5) && value.isNotEmpty) {
+    if ((value.length > 5) && value.isNotEmpty) {
       _name = ValidationItem(value, null);
     } else {
       _name = ValidationItem(
@@ -107,7 +107,7 @@ class LoginModel extends BaseModel {
   }
 
   void changeEmail(String value) {
-    if (!(value.length > 5) && value.isNotEmpty) {
+    if ((value.length > 5) && value.isNotEmpty) {
       _name = ValidationItem(value, null);
     } else {
       _name =

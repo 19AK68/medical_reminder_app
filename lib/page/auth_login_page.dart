@@ -371,9 +371,11 @@ void showPress(
                               left: 20,
                               right: 20,
                               bottom: MediaQuery.of(context).viewInsets.bottom),
-                          child: Container(
+
                             child: RaisedButton(
                               child: Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
                                   padding: EdgeInsets.symmetric(
                                       vertical: UI.marginStandard),
                                   child: Text(
@@ -399,9 +401,8 @@ void showPress(
                                 ),
                               ),
                             ),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width,
-                          ),
+
+
                         ),
                         SizedBox(
                           height: 20,
