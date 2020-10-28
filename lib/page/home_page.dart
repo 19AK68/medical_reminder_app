@@ -1,23 +1,28 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:medical_reminder/page/new_entry_page.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
+import 'package:medical_reminder/view_model/new_entry_model.dart';
 import 'package:medical_reminder/widget/custom_appbar_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../multi_provider_controller.dart';
+
 class HomePage extends StatelessWidget {
+  final primaryColor = const Color(0xFF20536c);
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<HomeModel>(context);
+    final modelNewEntryModel = Provider.of<NewEntryModel>(context);
     return Container(
       child: Container(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             iconTheme: IconThemeData(
-              color: Color(0xFF20536c),
+              color: primaryColor,
             ),
             title: CustomAppBar(),
             brightness: Brightness.light,
@@ -64,7 +69,7 @@ class HomePage extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             elevation: 4,
-            backgroundColor: Color(0xFF20536c),
+            backgroundColor: primaryColor,
             //Color(0xFF3EB16F), //Color(0xFF3EB16F),
             child: Container(
               decoration: BoxDecoration(
@@ -75,12 +80,17 @@ class HomePage extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NewEntryPage(),
-                ),
-              );
+              Navigator.of(context)
+                  .push(   MaterialPageRoute(
+                       builder: (context) => NewEntryPage(),
+                   ),);
+
+              // Navigator.push(
+              //   context,
+              //  MaterialPageRoute(
+              //     builder: (context) => NewEntryPage(),
+              //  ),
+             // );
             },
           ),
         ),
@@ -90,9 +100,11 @@ class HomePage extends StatelessWidget {
 }
 
 class TopContainer extends StatelessWidget {
+  final primaryColor = const Color(0xFF20536c);
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
+
     return Material(
         child: //SafeArea(
             Container(
@@ -111,7 +123,7 @@ class TopContainer extends StatelessWidget {
             offset: Offset(0, 3.5),
           )
         ],
-        color: Color(0xFF20536c), //Color(0xFF3EB16F),
+        color: primaryColor, //Color(0xFF3EB16F),
       ),
       // width: double.infinity,
       child: Column(

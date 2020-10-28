@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
+  final primaryColor = const Color(0xFF20536c);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,11 +13,11 @@ class CustomAppBar extends StatelessWidget {
             TextSpan(
                 text: 'Medication',
                 style: TextStyle(
-                    fontWeight: FontWeight.w300, color: Color(0xFF20536c))),
+                    fontWeight: FontWeight.w300, color: primaryColor)),
             TextSpan(
                 text: 'Reminder',
                 style: TextStyle(
-                    fontWeight: FontWeight.w600, color: Color(0xFF20536c))),
+                    fontWeight: FontWeight.w600, color: primaryColor)),
           ],
         ),
       ),
