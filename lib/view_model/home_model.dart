@@ -2,6 +2,7 @@ import 'base_model.dart';
 
 class HomeModel extends BaseModel {
   HomeModel();
+  final List<String> medList = ["Panadol","Nemicil", "Vitamim C", "Karvalol"];
 
   String _displayText = "";
   String mainTitle = " Press + to add a Medimcal Reminder ";
@@ -14,4 +15,6 @@ class HomeModel extends BaseModel {
   }
 
   String get getDisplayText => _displayText;
+
+
 }

@@ -60,8 +60,17 @@ class HomePage extends StatelessWidget {
                 //   ],
                 // ),
               ),
+              GridView.count(
+                crossAxisCount: 1,
+                children:
+                List.generate(model.medList.length, (index) => buildMedicalReminderCard(model, index, context)
+                ),
+
+
+              ),
             ],
           ),
+          
           floatingActionButton: FloatingActionButton(
             elevation: 4,
             backgroundColor: Color(0xFF20536c),
@@ -84,6 +93,39 @@ class HomePage extends StatelessWidget {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildMedicalReminderCard(HomeModel model, int index, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(UI.marginStandardHalf),
+      child: Container(
+        decoration: BoxDecoration(
+
+            image: DecorationImage(
+                image: AssetImage('assets/fon.jpg'),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.1), BlendMode.dstATop)),
+          border: Border.all(color:Color(0xFF20536c).withOpacity(0.3)),
+          borderRadius:  BorderRadius.circular(30.0),
+
+
+        ),
+        child:Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
+
+        // child: Card(
+        //   elevation:5,
+        //   shape: RoundedRectangleBorder(
+        //     side: BorderSide(color:  Color(0xFF20536c).withOpacity(0.5), width: 1),
+        //
+        //     borderRadius: BorderRadius.circular(50.0),
+        //
+        //   ),
+        //
+        //   child: Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
+        //           ),
       ),
     );
   }
