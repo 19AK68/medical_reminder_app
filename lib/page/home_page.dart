@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:medical_reminder/page/new_entry_page.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
@@ -60,14 +61,18 @@ class HomePage extends StatelessWidget {
                 //   ],
                 // ),
               ),
-              GridView.count(
-                crossAxisCount: 1,
-                children:
-                List.generate(model.medList.length, (index) => buildMedicalReminderCard(model, index, context)
-                ),
-
-
-              ),
+              // GridView.count(
+              //   crossAxisCount: 2,
+              //   children:
+              //   List.generate(model.medList.length, (index) => buildMedicalReminderCard(model, index, context)
+              //   ),
+              //
+              //
+              // ),
+              ListView.builder(
+                  itemCount: model.medicalCard.length,
+                  itemBuilder:(BuildContext context, int index) => buildMedicalReminderCard(model, index, context)
+              )
             ],
           ),
           
@@ -100,33 +105,97 @@ class HomePage extends StatelessWidget {
   Widget buildMedicalReminderCard(HomeModel model, int index, BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(UI.marginStandardHalf),
-      child: Container(
-        decoration: BoxDecoration(
+      child: buildCardInfo(model, index),
+    );
+  }
 
-            image: DecorationImage(
-                image: AssetImage('assets/fon.jpg'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.1), BlendMode.dstATop)),
-          border: Border.all(color:Color(0xFF20536c).withOpacity(0.3)),
-          borderRadius:  BorderRadius.circular(30.0),
+  Widget buildCardInfo(HomeModel model, int index) {
+    return Container(
+      height: 150,
+      decoration: BoxDecoration(
+
+          image: DecorationImage(
+              image: AssetImage('assets/fon.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.1), BlendMode.dstATop)),
+        border: Border.all(color:Color(0xFF20536c).withOpacity(0.3)),
+        borderRadius:  BorderRadius.circular(30.0),
 
 
-        ),
-        child:Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
-
-        // child: Card(
-        //   elevation:5,
-        //   shape: RoundedRectangleBorder(
-        //     side: BorderSide(color:  Color(0xFF20536c).withOpacity(0.5), width: 1),
-        //
-        //     borderRadius: BorderRadius.circular(50.0),
-        //
-        //   ),
-        //
-        //   child: Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
-        //           ),
       ),
+      child:Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                 // Text("Medicene name: "),
+                  Text(
+                    model.medicalCard[index].name + " - " + model.medicalCard[index].dosage + " mg" ,
+                    style: TextStyle(color: Color(0xFF20536c), fontSize: 22 * UI.scaleFactorH, fontWeight:FontWeight.bold ),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(top:8.0),
+                    child: Icon(
+                      IconData(model.iconValue(model.medicalCard[index].type), fontFamily: "Ic"), //"GalleryIcons"
+                      size: 40 * UI.scaleFactorH,
+                      color:  Color(0xFF20536c),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            // Row(
+            //   children: [
+            //   //  Text('Dosage in mg :'),
+            //     Text(model.medicalCard[index].dosage + " mg", style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)
+            //   ],
+            // ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Reception interval every :', style: TextStyle(color: Color(0xFF20536c).withOpacity(0.7), fontSize: 14)),
+                Text(model.medicalCard[index].interval + " h", style: TextStyle(color: Color(0xFF20536c), fontSize: 16),),
+
+              ],
+
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Text('Start:',style: TextStyle(color: Color(0xFF20536c).withOpacity(0.7), fontSize: 14)),
+                Text(
+                  '${DateFormat('dd/MM/yyyy').format(model.medicalCard[index].startTime).toString()}',
+                  style: TextStyle(color: Color(0xFF20536c), fontSize: 16),)
+
+              ],
+
+            ),
+
+
+
+          ],
+        ),
+      ),
+
+      // child: Card(
+      //   elevation:5,
+      //   shape: RoundedRectangleBorder(
+      //     side: BorderSide(color:  Color(0xFF20536c).withOpacity(0.5), width: 1),
+      //
+      //     borderRadius: BorderRadius.circular(50.0),
+      //
+      //   ),
+      //
+      //   child: Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
+      //           ),
     );
   }
 }
