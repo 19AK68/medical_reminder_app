@@ -150,12 +150,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            // Row(
-            //   children: [
-            //   //  Text('Dosage in mg :'),
-            //     Text(model.medicalCard[index].dosage + " mg", style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)
-            //   ],
-            // ),
+
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -185,17 +180,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      // child: Card(
-      //   elevation:5,
-      //   shape: RoundedRectangleBorder(
-      //     side: BorderSide(color:  Color(0xFF20536c).withOpacity(0.5), width: 1),
-      //
-      //     borderRadius: BorderRadius.circular(50.0),
-      //
-      //   ),
-      //
-      //   child: Center(child: Text(model.medList[index], style: TextStyle(color: Color(0xFF20536c), fontSize: 20),)),
-      //           ),
+
     );
   }
 }
