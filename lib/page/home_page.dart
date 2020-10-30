@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
 
   Widget buildCardInfo(HomeModel model, int index) {
     return Container(
-      height: h * 0.22,
+      height: h * 0.18,
       decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/fon.jpg'),
@@ -96,77 +96,164 @@ class HomePage extends StatelessWidget {
       child:Padding(
         padding: EdgeInsets.symmetric(horizontal: UI.marginStandard, vertical: UI.marginStandardHalf),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: UI.marginStandard,),
-              child: Row(
-                children: [
-                  Text(
-                    model.medicalCard[index].name + " - " + model.medicalCard[index].dosage + " mg" ,
-                    style: TextStyle(color: primaryColor, fontSize: 22 * UI.textScaleFactor, fontWeight:FontWeight.bold ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(top:UI.marginStandardHalf),
-                    child: Icon(
-                      IconData(model.iconValue(model.medicalCard[index].type), fontFamily: "Ic"), //"GalleryIcons"
-                      size: 40 * UI.textScaleFactor,
-                      color:  primaryColor,
-                    ),
-                  )
-                ],
-              ),
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
 
-                Text('Reception interval every :',
-                    style: TextStyle(
-                        color: primaryColor.withOpacity(0.7),
-                        fontSize: 14*UI.textScaleFactor)),
-                Text(model.medicalCard[index].interval + " h",
-                  style: TextStyle(
-                      color: primaryColor,
-                      fontSize: 16*UI.textScaleFactor),),
-
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                    'Start:',
-                    style:
-                    TextStyle(
-                        color: primaryColor.withOpacity(0.7),
-                        fontSize: 14*UI.textScaleFactor)),
-                Text(
-                  '${DateFormat('dd/MM/yyyy').format(model.medicalCard[index].startTime).toString()}',
-                  style: TextStyle(
-                      color: primaryColor,
-                      fontSize: 16*UI.textScaleFactor),)
-              ],
-
-            ),
-            Row(
-              children: [
-                Spacer(),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: UI.marginStandardHalf),
-                  child: IconButton(icon: Icon(
-                    model.medicalCard[index].isAlarm?
-                    Icons.add_alert:Icons.add_alert_outlined,color: primaryColor,),
-                  onPressed:() {
+                  padding: EdgeInsets.only(top: UI.marginStandardHalf),
+                  child: Icon(
+                    IconData(model.iconValue(model.medicalCard[index].type), fontFamily: "Ic"), //"GalleryIcons"
+                    size: 50 * UI.textScaleFactor,
+                    color:  primaryColor,
+                  ),
+                ),
+                Expanded(
 
-                    model.updateAlert(model.medicalCard[index].isAlarm,index);
-                  },),
-                )
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16, right: 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: UI.marginStandardHalf,bottom: UI.marginStandardHalf),
+                          child: Row(
+                            //mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                model.medicalCard[index].name + " - " + model.medicalCard[index].dosage + " mg" ,
+                                style: TextStyle(color: primaryColor, fontSize: 22 * UI.textScaleFactor, fontWeight:FontWeight.bold ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: UI.marginStandardHalf,bottom: UI.marginStandardHalf),
+                          child: Row(
+                  //          mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Reception interval every :',
+                                  style: TextStyle(
+                                      color: primaryColor.withOpacity(0.7),
+                                      fontSize: 14*UI.textScaleFactor)),
+                              Text(model.medicalCard[index].interval + " h",
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 16*UI.textScaleFactor),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: UI.marginStandardHalf,bottom: UI.marginStandardHalf),
+                          child: Row(
+                            //mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  'Start:',
+                                  style:
+                                  TextStyle(
+                                      color: primaryColor.withOpacity(0.7),
+                                      fontSize: 14*UI.textScaleFactor)),
+                              Text(
+                                '${DateFormat('dd/MM/yyyy').format(model.medicalCard[index].startTime).toString()}',
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 16*UI.textScaleFactor),)
+                            ],
+                          ),
+                        )
+
+                      ],
+                    ),
+                  ),
+                ),
+                IconButton(
+                    icon: Icon(
+                         model.medicalCard[index].isAlarm?
+                         Icons.add_alert:Icons.add_alert_outlined,color: primaryColor,),
+                    onPressed: null)
               ],
-            ),
+            )
           ],
         ),
+        // child: Column(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Padding(
+        //       padding:  EdgeInsets.symmetric(horizontal: UI.marginStandard,),
+        //       child:
+        //
+        //       Row(
+        //         children: [
+        //           Text(
+        //             model.medicalCard[index].name + " - " + model.medicalCard[index].dosage + " mg" ,
+        //             style: TextStyle(color: primaryColor, fontSize: 22 * UI.textScaleFactor, fontWeight:FontWeight.bold ),
+        //           ),
+        //           Spacer(),
+        //           Padding(
+        //             padding: EdgeInsets.only(top:UI.marginStandardHalf),
+        //             child: Icon(
+        //               IconData(model.iconValue(model.medicalCard[index].type), fontFamily: "Ic"), //"GalleryIcons"
+        //               size: 40 * UI.textScaleFactor,
+        //               color:  primaryColor,
+        //             ),
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //
+        //         Text('Reception interval every :',
+        //             style: TextStyle(
+        //                 color: primaryColor.withOpacity(0.7),
+        //                 fontSize: 14*UI.textScaleFactor)),
+        //         Text(model.medicalCard[index].interval + " h",
+        //           style: TextStyle(
+        //               color: primaryColor,
+        //               fontSize: 16*UI.textScaleFactor),),
+        //
+        //       ],
+        //     ),
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //         Text(
+        //             'Start:',
+        //             style:
+        //             TextStyle(
+        //                 color: primaryColor.withOpacity(0.7),
+        //                 fontSize: 14*UI.textScaleFactor)),
+        //         Text(
+        //           '${DateFormat('dd/MM/yyyy').format(model.medicalCard[index].startTime).toString()}',
+        //           style: TextStyle(
+        //               color: primaryColor,
+        //               fontSize: 16*UI.textScaleFactor),)
+        //       ],
+        //
+        //     ),
+        //     Row(
+        //       children: [
+        //         Spacer(),
+        //         Padding(
+        //           padding:  EdgeInsets.symmetric(horizontal: UI.marginStandardHalf),
+        //           child: IconButton(
+        //           icon: Icon(
+        //             model.medicalCard[index].isAlarm?
+        //             Icons.add_alert:Icons.add_alert_outlined,color: primaryColor,),
+        //           onPressed:() {
+        //
+        //             model.updateAlert(model.medicalCard[index].isAlarm,index);
+        //           },),
+        //         )
+        //       ],
+        //     ),
+        //   ],
+        // ),
       ),
 
 
