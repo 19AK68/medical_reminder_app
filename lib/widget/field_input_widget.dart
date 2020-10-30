@@ -39,7 +39,7 @@ class InputField extends StatelessWidget {
             color: Color(0xFF20536c).withOpacity(0.9) //Color(0xFFbdc6cf)
             ),
         decoration: InputDecoration(
-            hintStyle: TextStyle(fontSize: 20, color: Color(0xFF20536c)),
+            hintStyle: TextStyle(fontSize: 20, color: Color(0xFF20536c).withOpacity(0.5)),
             hintText: hint ?? " ",
             errorText: errorText,
             //"Error Text", //model.valitedateInput(controller.text, inputField),

@@ -6,15 +6,16 @@ import 'base_model.dart';
 
 class HomeModel extends BaseModel {
   HomeModel();
+
   final List<String> medList = ["Panadol","Nemicil", "Vitamim C", "Karvalol"];
 
 
 
   final List<MedicalCard> medicalCard = [
-    MedicalCard('Panadol','5' , MedicineType.Pill, "4", DateTime.now()),
-    MedicalCard('Nemicil','2' , MedicineType.Pill, "6", DateTime.now()),
-    MedicalCard('Vitamim C','500' , MedicineType.Bottle, "8", DateTime.now()),
-    MedicalCard('Karvalol ','20' , MedicineType.Tablet, "10", DateTime.now()),
+    MedicalCard('Panadol','5' , MedicineType.Pill, "4", DateTime.now(),false),
+    MedicalCard('Nemicil','2' , MedicineType.Pill, "6", DateTime.now(),false),
+    MedicalCard('Vitamim C','500' , MedicineType.Bottle, "8", DateTime.now(),false),
+    MedicalCard('Karvalol ','20' , MedicineType.Tablet, "10", DateTime.now(),false),
   ];
 
   int iconValue (MedicineType type){
@@ -50,5 +51,18 @@ class HomeModel extends BaseModel {
 
   String get getDisplayText => _displayText;
 
+  bool _addAlert = false;
 
+  bool get addAlert => _addAlert;
+
+  bool updateAlert(bool value,int index) {
+
+    bool alert = !value;
+    medicalCard[index].isAlarm = alert;
+
+    notifyListeners();
+    return alert;
+
+
+  }
 }

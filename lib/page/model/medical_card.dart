@@ -6,8 +6,9 @@ class MedicalCard {
   final MedicineType type;
   final String interval;
   final DateTime startTime;
+  bool isAlarm = false;
 
-  MedicalCard(this.name, this.dosage, this.type, this.interval, this.startTime);
+  MedicalCard(this.name, this.dosage, this.type, this.interval, this.startTime, this.isAlarm);
 
 }
 

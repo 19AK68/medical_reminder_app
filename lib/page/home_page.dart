@@ -9,16 +9,21 @@ import 'package:medical_reminder/widget/custom_appbar_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  final Color primaryColor = Color(0xFF20536c);
+  var h;
+
+
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
+    h = MediaQuery.of(context).size.height;
     return Container(
       child: Container(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             iconTheme: IconThemeData(
-              color: Color(0xFF20536c),
+              color: primaryColor,
             ),
             title: CustomAppBar(),
             brightness: Brightness.light,
@@ -34,41 +39,8 @@ class HomePage extends StatelessWidget {
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
                             Colors.white.withOpacity(0.1), BlendMode.dstATop))),
-                //decoration: ScreenDecoration(),
-                // child: Column(
-                //   mainAxisSize: MainAxisSize.max,
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                //   children: <Widget>[
-                //     Flexible(
-                //       flex: 6,
-                //       child: TopContainer(),
-                //     ),
-                //     SizedBox(
-                //       height: 10 * UI.scaleFactorH,
-                //     ),
-                //     Flexible(
-                //       flex: 11,
-                //       child: Center(
-                //           child: Text(
-                //         model.mainTitle,
-                //         style: TextStyle(
-                //           fontSize: 18 * UI.scaleFactorH,
-                //           color: Colors.grey[400],
-                //         ),
-                //       )),
-                //     ),
-                //   ],
-                // ),
               ),
-              // GridView.count(
-              //   crossAxisCount: 2,
-              //   children:
-              //   List.generate(model.medList.length, (index) => buildMedicalReminderCard(model, index, context)
-              //   ),
-              //
-              //
-              // ),
+
               ListView.builder(
                   itemCount: model.medicalCard.length,
                   itemBuilder:(BuildContext context, int index) => buildMedicalReminderCard(model, index, context)
@@ -78,7 +50,7 @@ class HomePage extends StatelessWidget {
           
           floatingActionButton: FloatingActionButton(
             elevation: 4,
-            backgroundColor: Color(0xFF20536c),
+            backgroundColor: primaryColor,
             //Color(0xFF3EB16F), //Color(0xFF3EB16F),
             child: Container(
               decoration: BoxDecoration(
@@ -104,78 +76,95 @@ class HomePage extends StatelessWidget {
 
   Widget buildMedicalReminderCard(HomeModel model, int index, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(UI.marginStandardHalf),
+      padding: EdgeInsets.symmetric(vertical: UI.marginStandardHalf,horizontal: UI.marginStandard),
       child: buildCardInfo(model, index),
     );
   }
 
   Widget buildCardInfo(HomeModel model, int index) {
     return Container(
-      height: 150,
+      height: h * 0.22,
       decoration: BoxDecoration(
-
           image: DecorationImage(
               image: AssetImage('assets/fon.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                   Colors.white.withOpacity(0.1), BlendMode.dstATop)),
-        border: Border.all(color:Color(0xFF20536c).withOpacity(0.3)),
+        border: Border.all(color:primaryColor.withOpacity(0.3)),
         borderRadius:  BorderRadius.circular(30.0),
-
-
       ),
       child:Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: UI.marginStandard, vertical: UI.marginStandardHalf),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding:  EdgeInsets.symmetric(horizontal: UI.marginStandard,),
               child: Row(
                 children: [
-                 // Text("Medicene name: "),
                   Text(
                     model.medicalCard[index].name + " - " + model.medicalCard[index].dosage + " mg" ,
-                    style: TextStyle(color: Color(0xFF20536c), fontSize: 22 * UI.scaleFactorH, fontWeight:FontWeight.bold ),
+                    style: TextStyle(color: primaryColor, fontSize: 22 * UI.textScaleFactor, fontWeight:FontWeight.bold ),
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(top:8.0),
+                    padding: EdgeInsets.only(top:UI.marginStandardHalf),
                     child: Icon(
                       IconData(model.iconValue(model.medicalCard[index].type), fontFamily: "Ic"), //"GalleryIcons"
-                      size: 40 * UI.scaleFactorH,
-                      color:  Color(0xFF20536c),
+                      size: 40 * UI.textScaleFactor,
+                      color:  primaryColor,
                     ),
                   )
                 ],
               ),
             ),
-
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Reception interval every :', style: TextStyle(color: Color(0xFF20536c).withOpacity(0.7), fontSize: 14)),
-                Text(model.medicalCard[index].interval + " h", style: TextStyle(color: Color(0xFF20536c), fontSize: 16),),
+
+                Text('Reception interval every :',
+                    style: TextStyle(
+                        color: primaryColor.withOpacity(0.7),
+                        fontSize: 14*UI.textScaleFactor)),
+                Text(model.medicalCard[index].interval + " h",
+                  style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16*UI.textScaleFactor),),
 
               ],
-
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-
               children: [
-                Text('Start:',style: TextStyle(color: Color(0xFF20536c).withOpacity(0.7), fontSize: 14)),
+                Text(
+                    'Start:',
+                    style:
+                    TextStyle(
+                        color: primaryColor.withOpacity(0.7),
+                        fontSize: 14*UI.textScaleFactor)),
                 Text(
                   '${DateFormat('dd/MM/yyyy').format(model.medicalCard[index].startTime).toString()}',
-                  style: TextStyle(color: Color(0xFF20536c), fontSize: 16),)
-
+                  style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16*UI.textScaleFactor),)
               ],
 
             ),
+            Row(
+              children: [
+                Spacer(),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: UI.marginStandardHalf),
+                  child: IconButton(icon: Icon(
+                    model.medicalCard[index].isAlarm?
+                    Icons.add_alert:Icons.add_alert_outlined,color: primaryColor,),
+                  onPressed:() {
 
-
-
+                    model.updateAlert(model.medicalCard[index].isAlarm,index);
+                  },),
+                )
+              ],
+            ),
           ],
         ),
       ),
