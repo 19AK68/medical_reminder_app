@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
 
-
 class CustomGradient extends LinearGradient {
-  static Color colorGreenStart = Color(0xFF20496c);//0xFF20496c
+  static Color colorGreenStart = Color(0xFF20496c); //0xFF20496c
   //static Color colorGreenEnd = Color(0xFF5788A0);
   static Color colorGreenEnd = Color(0xFF20536c);
 
@@ -24,13 +23,12 @@ class CustomGradient extends LinearGradient {
 class ScreenDecoration extends BoxDecoration {
   ScreenDecoration()
       : super(
-    gradient: CustomGradient(
-      Color(0xffFBFCFC),
-      Color(0xffEBECED),
-    ),
-  );
+          gradient: CustomGradient(
+            Color(0xffFBFCFC),
+            Color(0xffEBECED),
+          ),
+        );
 }
-
 
 class GradientButton extends StatelessWidget {
   final Widget child;
@@ -117,22 +115,19 @@ class UI {
 
   static double playWidgetHeight = _scaleFactorH * 32;
 
-
   static double get scaleFactorW => _scaleFactorW;
 
   static double get scaleFactorH => _scaleFactorH;
 
   static double get textScaleFactor => min(_scaleFactorH, _scaleFactorW);
 
-
-
   static bool _adaptiveDesignDone = false;
 
   static void setAdaptiveDesign(BuildContext context) {
     if (!_adaptiveDesignDone) {
       double newScaleFactorW = min(
-          MediaQuery.of(context).size.width / STANDARD_DISPLAY_WIDTH,
-          MAX_SCALE_FACTOR) *
+              MediaQuery.of(context).size.width / STANDARD_DISPLAY_WIDTH,
+              MAX_SCALE_FACTOR) *
           0.9;
 
       double newScaleFactorH = min(
@@ -160,7 +155,11 @@ class UI {
   static String formatTimeOfDay(TimeOfDay tod) {
     final now = new DateTime.now();
     final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
-    final format = DateFormat.jm();  //"6:00 AM"
+    final format = DateFormat.jm(); //"6:00 AM"
     return format.format(dt);
-}
+  }
+
+  static String getUsername(String email) {
+    return 'live:${email.split('@')[0]}';
+  }
 }
