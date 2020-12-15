@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:medical_reminder/page/model/user.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 
 class FirebaseMethods {
@@ -8,12 +7,12 @@ class FirebaseMethods {
   static final Firestore firestore = Firestore.instance;
 
   //user class
-  User user = User();
+  //Users user = Users();
 
   Future<FirebaseUser> getCurrentUser() async {
     //FirebaseUser currentUser;
     // currentUser = await _firebaseAuth.currentUser();
-    return await _firebaseAuth.currentUser();
+  //  return await _firebaseAuth.currentUser();
   }
 
   Future<bool> authenticateUser(FirebaseUser user) async {
@@ -26,12 +25,12 @@ class FirebaseMethods {
     return docs.length == 0 ? true : false;
   }
 
-  Future<void> addDataToDb(FirebaseUser currenfUser) {
-    String username = UI.getUsername(currenfUser.email);
-    user = User(
-      uid: currenfUser.uid,
-      email: currenfUser.email,
-      name: username,
-    );
-  }
+  // Future<void> addDataToDb(FirebaseUser currenfUser) {
+  //   String username = UI.getUsername(currenfUser.email);
+  //   user = User(
+  //     uid: currenfUser.uid,
+  //     email: currenfUser.email,
+  //     name: username,
+  //   );
+  // }
 }
