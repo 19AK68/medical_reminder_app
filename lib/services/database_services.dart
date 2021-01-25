@@ -43,7 +43,7 @@ class DataBaseServices {
      {
        'name':_firebaseUser.displayName,
        'e-mail' :_firebaseUser.email,
-     },SetOptions(merge: true)).then((_){
+     }).then((_){
       print("success!");
     });
 
