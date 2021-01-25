@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class PanelTitle extends StatelessWidget {
+class TitleGroupe extends StatelessWidget {
   final String title;
   final bool isRequired;
   final Color spanColor;
-  PanelTitle({
+  TitleGroupe({
     Key key,
     @required this.title,
     @required this.isRequired,@required this.spanColor,

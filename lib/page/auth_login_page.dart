@@ -248,7 +248,6 @@ Route _createRegisterRoute(AuthType _authType) {
   AuthType authType = _authType;
 
   return PageRouteBuilder(
-    
     pageBuilder: (context, animation, secondaryAnimation) =>
         InputOrRegisterPage(authType: authType),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -371,38 +370,38 @@ void showPress(
                               left: 20,
                               right: 20,
                               bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: RaisedButton(
+                            child: Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: UI.marginStandard),
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                            highlightElevation: 0.0,
+                            splashColor: Colors.white,
+                            highlightColor: Color(0xFF20536c),
+                            elevation: 0.0,
+                            color: Color(0xFF20536c),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                  width: 1),
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            onPressed: () {
 
-                            child: RaisedButton(
-                              child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: UI.marginStandard),
-                                  child: Text(
-                                    "Login",
-                                    style: TextStyle(color: Colors.white),
-                                  )),
-                              highlightElevation: 0.0,
-                              splashColor: Colors.white,
-                              highlightColor: Color(0xFF20536c),
-                              elevation: 0.0,
-                              color: Color(0xFF20536c),
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    color: Colors.white,
-                                    style: BorderStyle.solid,
-                                    width: 1),
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              onPressed: () => Navigator.push(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => HomePage(),
                                 ),
-                              ),
-                            ),
-
-
+                              );
+                            },
+                          ),
                         ),
                         SizedBox(
                           height: 20,

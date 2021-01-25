@@ -17,20 +17,26 @@ class SelectTime extends StatelessWidget {
           onPressed: () {
              model.selectTime(context);
           },
-          color: Color(0xFF20536c),
-          shape: StadiumBorder(),
+          minWidth: 32,
+          height: 32,
+
+
+         color: Color(0xFF20536c),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+              side: BorderSide(color:  Color(0xFF20536c))),
+         // shape: StadiumBorder(),
           child: Container(
             padding: EdgeInsets.symmetric(
-              vertical: UI.marginStandardHalf,
+              vertical: UI.marginStandardHalf/2,
+              horizontal: UI.marginStandardHalf/2,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Icon(Icons.access_time)),
+
+                    child: Icon(Icons.calendar_today,color:Colors.white,)),
 //                Container(
 //                  padding: EdgeInsets.symmetric(horizontal: UI.marginStandardHalf,),
 //                  child: Text(

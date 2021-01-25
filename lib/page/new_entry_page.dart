@@ -45,7 +45,7 @@ class NewEntryPage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: UI.marginStandardDouble),
           children: <Widget>[
-            PanelTitle(
+            TitleGroupe(
                 title: "Medicine Name",
                 isRequired: true,
                 spanColor: Color(0xFF20536c)),
@@ -57,18 +57,16 @@ class NewEntryPage extends StatelessWidget {
                 border: UnderlineInputBorder(),
               ),
             ),
-            PanelTitle(
-              title: "Dosage in mg",
+            TitleGroupe(
+              title: "Dosage:",
               isRequired: true,
               spanColor: Color(0xFF20536c),
             ),
             TextFormField(
               controller: dosageController,
               keyboardType: TextInputType.number,
-//               inputFormatters: <TextInputFormatter>[
-//                  WhitelistingTextInputFormatter.digitsOnly
-//
-//], // Only numbers can be entered
+
+              // Only numbers can be entered
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -80,7 +78,7 @@ class NewEntryPage extends StatelessWidget {
             SizedBox(
               height: UI.marginStandard,
             ),
-            PanelTitle(
+            TitleGroupe(
                 title: "Medicine Type",
                 isRequired: false,
                 spanColor: Color(0xFF20536c)),
@@ -134,7 +132,7 @@ class NewEntryPage extends StatelessWidget {
               ),
             ),
 
-            PanelTitle(
+            TitleGroupe(
                 title: "Interval Selection",
                 isRequired: true,
                 spanColor: Color(0xFF20536c)),
@@ -147,7 +145,7 @@ class NewEntryPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                PanelTitle(
+                TitleGroupe(
                     title: "Starting Time",
                     isRequired: true,
                     spanColor: Color(0xFF20536c)),

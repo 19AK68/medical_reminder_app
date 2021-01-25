@@ -115,7 +115,7 @@ class InputOrRegisterPage extends StatelessWidget {
                               errorText: model.name.error,
                               controller: _nameController,
                               obsecure: false,
-                              onChanged: (String value ) {
+                              onChanged: (String value) {
                                 print("value" + value);
                                 model.changeName(value);
                               },
@@ -195,7 +195,10 @@ class InputOrRegisterPage extends StatelessWidget {
                                 .login(authType, _emailController.text,
                                     _passwordController.text)
                                 .then((val) {
+
                               if (model.isCorrect) {
+                                model.connectUserCollection();
+
                                 return Navigator.push(
                                     context,
                                     MaterialPageRoute(

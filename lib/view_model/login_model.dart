@@ -1,4 +1,5 @@
 import 'package:medical_reminder/services/auth.dart';
+import 'package:medical_reminder/services/database_services.dart';
 import 'package:medical_reminder/util/enums/auth_type.dart';
 import 'package:medical_reminder/util/enums/login_input_field.dart';
 import 'package:medical_reminder/util/validation/validation_item.dart';
@@ -8,25 +9,21 @@ class LoginModel extends BaseModel {
   LoginModel();
 
   AuthService authService = new AuthService();
+  DataBaseServices dbServices = new  DataBaseServices();
+
 
   bool isCorrect = false;
 
   Future<void> login(AuthType authType, String email, String password) async {
     setBusy(true);
-    print("isLoading 1 " + isCorrect.toString());
-
     if (authType == AuthType.Login) {
       var result = await authService.loginWithEmail(email, password);
-      setBusy(false);
-      print("isLoading 2 " + isCorrect.toString());
-
       if (result != null) {
-        print(" Login  OK");
         isCorrect = true;
         notifyListeners();
+
       }
     }
-    print("isLoading 3 " + isCorrect.toString());
 
     if (authType == AuthType.Register) {
       await authService.signUpWithEmail(email, password).then((value) {
@@ -39,8 +36,6 @@ class LoginModel extends BaseModel {
         }
       });
     }
-
-    print("isLoading 4  " + isCorrect.toString());
   }
 
   String titleText(AuthType authType) {
@@ -73,6 +68,12 @@ class LoginModel extends BaseModel {
     return null;
   }
 
+
+  //USER COLLECTION
+  void connectUserCollection(){
+    dbServices.userCollection();
+  }
+
   //VALIDATION
   ValidationItem _name = ValidationItem(null, null);
   ValidationItem _email = ValidationItem(null, null);
@@ -81,7 +82,9 @@ class LoginModel extends BaseModel {
   // getter
 
   ValidationItem get name => _name;
+
   ValidationItem get email => _email;
+
   ValidationItem get password => _password;
 
   //Setter
