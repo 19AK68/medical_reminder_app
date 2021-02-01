@@ -1,0 +1,1 @@
+enum PageAnimationType { SLIDE_LEFT, SLIDE_TOP, SLIDE_BOTTOM, HOME_ANIMATION }

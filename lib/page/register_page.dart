@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medical_reminder/page/home_page.dart';
 import 'package:medical_reminder/util/enums/auth_type.dart';
 import 'package:medical_reminder/util/enums/login_input_field.dart';
@@ -198,6 +199,15 @@ class InputOrRegisterPage extends StatelessWidget {
 
                               if (model.isCorrect) {
                                 model.connectUserCollection();
+                                Fluttertoast.showToast(
+                                    msg: "Success",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0
+                                );
 
                                 return Navigator.push(
                                     context,

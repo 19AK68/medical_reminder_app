@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/page/auth_login_page.dart';
 import 'package:medical_reminder/util/colors.dart';
+import 'package:medical_reminder/view_model/drawer_model.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
@@ -16,6 +17,8 @@ class MedicalReminderApp extends StatelessWidget {
         ChangeNotifierProvider<LoginModel>(create: (_) => LoginModel()),
         ChangeNotifierProvider<HomeModel>(create: (_) => HomeModel()),
         ChangeNotifierProvider<NewEntryModel>(create: (_) => NewEntryModel()),
+        ChangeNotifierProvider<DrawerModel>(create: (_) => DrawerModel()),
+
       ],
       child: MaterialApp(
         title: 'MedicalReminder',

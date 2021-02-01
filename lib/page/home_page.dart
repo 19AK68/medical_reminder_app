@@ -2,15 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:medical_reminder/page/drawer_page.dart';
 import 'package:medical_reminder/page/new_entry_page.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
+
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:medical_reminder/widget/custom_appbar_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:medical_reminder/util/enums/type_animation.dart';
 
 class HomePage extends StatelessWidget {
   final Color primaryColor = Color(0xFF20536c);
   var h;
+
 
 
   @override
@@ -22,9 +26,29 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: primaryColor,
-            ),
+            automaticallyImplyLeading: false,
+          leading: InkWell(
+              child:Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Icon(
+                  Icons.menu,
+                  color: primaryColor,
+                ),
+              ),
+            onTap: () {
+              UI.navigate(
+                context,
+                DrawerPage(),
+                this,
+                animationType: PageAnimationType.SLIDE_BOTTOM,);
+            }
+
+
+
+          ),
+            // iconTheme: IconThemeData(
+            //   color: primaryColor,
+            // ),
             title: CustomAppBar(),
             brightness: Brightness.light,
             elevation: 0.0,
@@ -260,6 +284,8 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
 
 class TopContainer extends StatelessWidget {
   @override

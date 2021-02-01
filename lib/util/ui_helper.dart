@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
+import 'package:medical_reminder/util/enums/type_animation.dart';
+import 'package:medical_reminder/view_model/base_model.dart';
+import 'package:provider/provider.dart';
 
 class CustomGradient extends LinearGradient {
   static Color colorGreenStart = Color(0xFF20496c); //0xFF20496c
@@ -162,4 +165,179 @@ class UI {
   static String getUsername(String email) {
     return 'live:${email.split('@')[0]}';
   }
+
+
+  static void navigate<T extends BaseModel>(
+      BuildContext context, Widget child, Widget parent,
+      {T model, PageAnimationType animationType}) {
+    print(
+        'Navigate to: ${child.runtimeType}. Caller: ${parent.runtimeType}. Model: ${model.runtimeType}');
+
+    final navigateTo = model == null
+        ? child
+        : ChangeNotifierProvider<T>(
+      create: (context) => model,
+      child: child,
+    );
+
+    Navigator.of(context).push(_buildRoute(navigateTo, parent, animationType));
+  }
+
+
+  static PageRouteBuilder _buildRoute(
+      Widget child, Widget parent, PageAnimationType animationType) {
+    return PageRouteBuilder(
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) =>
+      child,
+      transitionsBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation, Widget child) {
+        switch (animationType) {
+          case PageAnimationType.SLIDE_TOP:
+            return _SlideTopTransitionAnimation(
+                animation: animation, child: child, parent: parent);
+          case PageAnimationType.SLIDE_BOTTOM:
+            return _SlideBottomTransitionAnimation(
+                animation: animation, child: child, parent: parent);
+            break;
+          case PageAnimationType.HOME_ANIMATION:
+            return _HomeTransitionAnimation(
+                animation: animation, child: child, parent: parent);
+            break;
+          case PageAnimationType.SLIDE_LEFT:
+          default:
+            return _SlideLeftTransitionAnimation(
+                animation: animation, child: child, parent: parent);
+            break;
+        }
+      },
+      transitionDuration: Duration(milliseconds: PAGE_TRANSITION_DURATION),
+    );
+  }
+}
+
+
+class _SlideBottomTransitionAnimation extends _BaseTransitionAnimation {
+  _SlideBottomTransitionAnimation(
+      {Animation<double> animation, Widget child, Widget parent})
+      : super(animation: animation, child: child, parent: parent);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset.zero,
+            end: Offset(0.0, 0.3),
+          ).animate(animation),
+          child: parent,
+        ),
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0.0, -1.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        )
+      ],
+    );
+  }
+}
+
+class _HomeTransitionAnimation extends _BaseTransitionAnimation {
+  _HomeTransitionAnimation({
+    @required animation,
+    @required child,
+    @required parent,
+  }) : super(animation: animation, child: child, parent: parent);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset.zero,
+            end: Offset(0.3, 0),
+          ).animate(animation),
+          child: parent,
+        ),
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(-1, 0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        ),
+      ],
+    );
+  }
+}
+class _SlideLeftTransitionAnimation extends _BaseTransitionAnimation {
+  _SlideLeftTransitionAnimation(
+      {Animation<double> animation, Widget child, Widget parent})
+      : super(animation: animation, child: child, parent: parent);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset.zero,
+            end: Offset(-1.0, 0.0),
+          ).animate(animation),
+          child: parent,
+        ),
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        )
+      ],
+    );
+  }
+}
+
+class _SlideTopTransitionAnimation extends _BaseTransitionAnimation {
+  _SlideTopTransitionAnimation(
+      {Animation<double> animation, Widget child, Widget parent})
+      : super(animation: animation, child: child, parent: parent);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset.zero,
+            end: Offset(0.0, -1.0),
+          ).animate(animation),
+          child: parent,
+        ),
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0.0, 1.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        )
+      ],
+    );
+  }
+}
+
+abstract class _BaseTransitionAnimation extends StatelessWidget {
+  final Animation<double> animation;
+  final Widget child;
+  final Widget parent;
+
+  _BaseTransitionAnimation({
+    @required this.animation,
+    @required this.child,
+    this.parent,
+  });
 }
