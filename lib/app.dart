@@ -5,6 +5,7 @@ import 'package:medical_reminder/view_model/drawer_model.dart';
 import 'package:medical_reminder/view_model/home_model.dart';
 import 'package:medical_reminder/view_model/login_model.dart';
 import 'package:medical_reminder/view_model/new_entry_model.dart';
+  import 'package:medical_reminder/view_model/profile_info_model.dart';
 import 'package:provider/provider.dart';
 
 
@@ -18,6 +19,8 @@ class MedicalReminderApp extends StatelessWidget {
         ChangeNotifierProvider<HomeModel>(create: (_) => HomeModel()),
         ChangeNotifierProvider<NewEntryModel>(create: (_) => NewEntryModel()),
         ChangeNotifierProvider<DrawerModel>(create: (_) => DrawerModel()),
+        ChangeNotifierProvider<ProfileInfoModel>(create: (_) => ProfileInfoModel()),
+
 
       ],
       child: MaterialApp(

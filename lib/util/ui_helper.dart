@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:medical_reminder/util/enums/type_animation.dart';
 import 'package:medical_reminder/view_model/base_model.dart';
+import 'package:medical_reminder/widget/toast_widget.dart';
 import 'package:provider/provider.dart';
 
 class CustomGradient extends LinearGradient {
@@ -33,23 +34,25 @@ class ScreenDecoration extends BoxDecoration {
         );
 }
 
+
 class GradientButton extends StatelessWidget {
-  final Widget child;
+  final String text;
+  final Color textColor;
   final Widget iconWidget;
-  final Function() onPressed;
+  final Function onPressed;
   final LinearGradient gradient;
 
   GradientButton({
-    @required this.child,
-    @required this.onPressed,
+    this.text,
+    this.textColor,
     this.gradient,
     this.iconWidget,
+    @required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(UI.marginStandard),
       decoration: BoxDecoration(
         gradient: gradient ?? CustomGradient(),
         borderRadius: BorderRadius.circular(UI.buttonRadius),
@@ -73,7 +76,15 @@ class GradientButton extends StatelessWidget {
               Center(
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: UI.marginStandard),
-                  child: child,
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: textColor ?? Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textScaleFactor: UI.textScaleFactor,
+                  ),
                 ),
               ),
 
@@ -86,6 +97,64 @@ class GradientButton extends StatelessWidget {
                 ),
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BorderButton extends StatelessWidget {
+  final String title;
+  final double fontSize;
+  final double borderWidth;
+  final Color color;
+  final Color backgroundColor;
+  final EdgeInsets contentPadding;
+  final Function onPressed;
+
+  BorderButton({
+    this.title,
+    this.fontSize,
+    this.borderWidth,
+    this.color,
+    this.backgroundColor,
+    this.contentPadding,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Material(
+        color: backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(UI.buttonRadius),
+          side: BorderSide(
+            color: color ?? Color(0xFF9BCB3C),
+            width: borderWidth ?? UI.scaleFactorW * 2,
+          ),
+        ),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(UI.buttonRadius),
+          child: Center(
+            child: Container(
+              padding: contentPadding ?? EdgeInsets.all(UI.marginStandard),
+              child: Text(
+                title ??
+                    toBeginningOfSentenceCase(MaterialLocalizations.of(context)
+                        .cancelButtonLabel
+                        .toLowerCase()),
+                maxLines: 1,
+                style: TextStyle(
+                  color: color ?? Color(0xFF9BCB3C),
+                  fontSize: fontSize ?? 18,
+                  fontWeight: FontWeight.w500,
+                ),
+                textScaleFactor: UI.textScaleFactor,
+              ),
+            ),
           ),
         ),
       ),
@@ -126,6 +195,10 @@ class UI {
 
   static bool _adaptiveDesignDone = false;
 
+  static TextStyle inputTextStyle() {
+    return TextStyle(color: Colors.black87, fontSize: UI.textScaleFactor * 18);
+  }
+
   static void setAdaptiveDesign(BuildContext context) {
     if (!_adaptiveDesignDone) {
       double newScaleFactorW = min(
@@ -153,6 +226,10 @@ class UI {
       marginStandardDouble = _scaleFactorW * 32.0;
       playWidgetHeight = _scaleFactorH * 32;
     }
+  }
+
+  static Future<void> showMessage(BuildContext context, String message) async {
+    await ToastWidget.show(message);
   }
 
   static String formatTimeOfDay(TimeOfDay tod) {

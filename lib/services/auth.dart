@@ -9,7 +9,7 @@ class AuthService {
      if(firebaseUser == null){
        return null;
      } else {
-      return Users(uid: firebaseUser.uid.toString());
+      return Users(uid: firebaseUser.uid.toString(),name: firebaseUser.displayName,email: firebaseUser.email);
      }
      
    // return user != null ? User(uid: user.uid) : null;
