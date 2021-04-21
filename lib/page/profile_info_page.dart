@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/services/database_services.dart';
@@ -202,6 +203,8 @@ class ProfileIntoPage extends StatelessWidget {
       ),
     );
   }
+
+ // buildFutureBuilderDetails(String name) {}
 
   FutureBuilder<DocumentSnapshot> buildFutureBuilderDetails(String param) {
     return FutureBuilder<DocumentSnapshot>(

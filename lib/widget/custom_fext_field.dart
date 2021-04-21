@@ -58,13 +58,13 @@ class CustomTextField extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: this.verticalPadding ?? UI.marginStandardHalf),
         child: FormBuilderTextField(
-          attribute: attribute,
+          //attribute: attribute,
           controller: controller,
           initialValue: initialValue,
           maxLines: MAX_LINES,
           readOnly: readOnly,
           maxLength: maxLength,
-          autovalidateMode: AutovalidateMode.always,
+       //   autovalidate: AutovalidateMode.always,
           keyboardType: keyboardType,
           obscureText: obscureText ?? false,
           decoration: decoration ?? InputDecoration(labelText: label ?? ''),
@@ -74,7 +74,7 @@ class CustomTextField extends StatelessWidget {
           inputFormatters: inputFormatters ?? [],
           focusNode: focus,
           onSaved: (val) => onSaved(val),
-          validators: validator == null ? [] : [(value) => validator(value)],
+         // validators: validator == null ? [] : [(value) => validator(value)],
         ),
       ),
     );

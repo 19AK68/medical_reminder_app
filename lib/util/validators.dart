@@ -5,13 +5,15 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// Because Validation must be 'nested' to remove Errors during editing of Fields
 /// we ended up with combination of multiple Validators
 class Validators {
+
+
   static String validateRequired(value, lastSavedValue, BuildContext context) {
     var trimmed = value.toString().trim();
     if (lastSavedValue != trimmed) {
       return null;
     }
-    if (FormBuilderValidators.required()(trimmed) != null) {
-      return "Field required";//AppLocalizations.of(context).fieldRequired;
+    if (FormBuilderValidators.required(context)(trimmed) != null) {
+      return "Field required";
     }
     return null;
   }
@@ -20,10 +22,10 @@ class Validators {
     if (lastSavedValue != value) {
       return null;
     }
-    if (FormBuilderValidators.required()(value) != null) {
+    if (FormBuilderValidators.required(context)(value) != null) {
       return "Field required";//return AppLocalizations.of(context).fieldRequired;
     }
-    if (FormBuilderValidators.minLength(10)(value) != null) {
+    if (FormBuilderValidators.minLength(context, 10)(value)!= null) {
       return "Field required";// return AppLocalizations.of(context).invalidPhoneNumber;
     }
 
@@ -34,10 +36,10 @@ class Validators {
     if (lastSavedValue != value) {
       return null;
     }
-    if (FormBuilderValidators.required()(value) != null) {
+    if (FormBuilderValidators.required(context)(value) != null) {
       return "Field required";//return AppLocalizations.of(context).fieldRequired;
     }
-    if (FormBuilderValidators.minLength(6)(value) != null) {
+    if (FormBuilderValidators.minLength(context, 6)(value) != null) {
       return "Field required";// return AppLocalizations.of(context).passwordTooShort;
     }
     return null;
@@ -47,10 +49,10 @@ class Validators {
     if (lastSavedValue != value) {
       return null;
     }
-    if (FormBuilderValidators.required()(value) != null) {
+    if (FormBuilderValidators.required(context)(value) != null) {
       return "Field required";// return AppLocalizations.of(context).fieldRequired;
     }
-    if (FormBuilderValidators.email()(value) != null) {
+    if (FormBuilderValidators.email(context)(value) != null) {
       return "Field required";// return AppLocalizations.of(context).enterValidEmail;
     }
     return null;
@@ -61,10 +63,10 @@ class Validators {
     if (value != lastSavedValue) {
       return null;
     }
-    if (FormBuilderValidators.required()(lastSavedValue) != null) {
+    if (FormBuilderValidators.required(context)(value) != null) {
      return "Field required";// return AppLocalizations.of(context).fieldRequired;
     }
-    if (FormBuilderValidators.minLength(6)(lastSavedValue) != null) {
+    if (FormBuilderValidators.minLength(context,6)(lastSavedValue) != null) {
       return "Field required";// return AppLocalizations.of(context).passwordTooShort;
     }
     if (value != value2) {

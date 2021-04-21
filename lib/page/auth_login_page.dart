@@ -17,7 +17,7 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<LoginModel>(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       key: _scaffoldKey,
       body: Container(
         decoration: BoxDecoration(

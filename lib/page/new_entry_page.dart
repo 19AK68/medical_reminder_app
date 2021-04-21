@@ -17,7 +17,7 @@ class NewEntryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<NewEntryModel>(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,

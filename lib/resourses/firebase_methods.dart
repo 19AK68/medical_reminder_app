@@ -1,27 +1,27 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:medical_reminder/util/ui_helper.dart';
 
 class FirebaseMethods {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  static final Firestore firestore = Firestore.instance;
+  User user = FirebaseAuth.instance.currentUser;
+
+  static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   //user class
   //Users user = Users();
 
-  Future<FirebaseUser> getCurrentUser() async {
-    //FirebaseUser currentUser;
-    // currentUser = await _firebaseAuth.currentUser();
-  //  return await _firebaseAuth.currentUser();
-  }
 
-  Future<bool> authenticateUser(FirebaseUser user) async {
+  Future<bool> authenticateUser() async {
     QuerySnapshot result = await firestore
         .collection('users')
         .where('email', isEqualTo: user.email)
-        .getDocuments();
+        .get();
 
-    final List<DocumentSnapshot> docs = result.documents;
+    final List<DocumentSnapshot> docs = result.docs;
     return docs.length == 0 ? true : false;
   }
 
